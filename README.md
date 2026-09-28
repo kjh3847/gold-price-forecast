@@ -1,6 +1,3 @@
-# gold-price-forecast
-금값 시세 예측 프로그램
-
 Gold Price Forecast
 
 금 가격 데이터를 수집하고 머신러닝/딥러닝 모델을 활용해 금값의 미래 가격을 예측하는 프로젝트입니다.
