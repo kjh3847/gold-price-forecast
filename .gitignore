@@ -216,3 +216,36 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# React UI and local verification tools
+node_modules/
+dist/
+.tools/
+test-results/
+playwright-report/
+*.log
+
+# Environment overrides, credentials, and local developer files
+.env.*
+*.env
+*.env.*
+.npmrc
+.netrc
+credentials.json
+secrets.json
+*.pem
+*.key
+*.p12
+*.pfx
+.idea/
+.vscode/
+*.swp
+*.swo
+*.tmp
+*~
+.DS_Store
+Thumbs.db
+.vite/
+.parcel-cache/
+.eslintcache
+coverage/
