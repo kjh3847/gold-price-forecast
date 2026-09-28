@@ -1,309 +1,238 @@
-Gold Price Forecast
+# 🪙 금 시세 예측 프로그램
 
-금 가격 데이터를 수집하고 머신러닝/딥러닝 모델을 활용해 금값의 미래 가격을 예측하는 프로젝트입니다.
+과거 금 시세 및 관련 데이터를 기반으로 향후 금 가격을 예측하고, 예측 결과를 웹에서 확인할 수 있도록 구현하는 머신러닝 팀 프로젝트입니다.
 
-현재는 Kaggle을 기반으로 금 가격 데이터를 수집·정제하고 있으며, 이후 모델 학습 및 예측 API와 웹 프론트엔드를 구축할 예정입니다.
+현재 데이터 수집 및 분석을 진행 중이며, 수집된 데이터를 바탕으로 적절한 머신러닝 모델을 선정하여 학습 및 검증을 진행할 예정입니다.
 
-🚧 현재 개발 초기 단계입니다.
-모델, 세부 아키텍처 및 예측 방식은 데이터 분석 및 실험 결과에 따라 결정할 예정입니다.
+---
 
-Project Overview
+## 📌 프로젝트 개요
 
-금 가격의 과거 데이터를 기반으로 미래 가격을 예측하는 것을 목표로 합니다.
+- **프로젝트명**: 금 시세 예측 프로그램
+- **프로젝트 유형**: 머신러닝 팀 프로젝트
+- **팀원 수**: 4명
+- **주요 기능**
+  - 금 시세 관련 데이터 수집
+  - 데이터 전처리 및 분석
+  - 머신러닝 기반 금 시세 예측
+  - 실제 금 시세와 예측 결과 비교
+  - 예측 결과 웹 시각화
+  - 예측 및 과거 데이터 저장
 
-전체적인 개발 흐름은 다음과 같습니다.
+---
 
-Kaggle Dataset
-      ↓
-Data Collection
-      ↓
-Data Cleaning / Preprocessing
-      ↓
-Exploratory Data Analysis
-      ↓
-Model Training
-      ↓
-Model Evaluation
-      ↓
-Prediction API
-      ↓
-React Frontend
+## 🎯 프로젝트 목표
 
-Current Progress
+금 가격은 환율, 금리, 국제 정세 등 다양한 요인에 따라 변동합니다.
 
- 프로젝트 초기 설정
+본 프로젝트에서는 과거 금 시세 및 관련 데이터를 활용해 금 가격의 변화 패턴을 분석하고, 머신러닝 모델을 통해 향후 금 시세를 예측하는 것을 목표로 합니다.
 
- Kaggle 데이터 수집
+최종적으로 사용자가 웹페이지에서 과거 금 시세와 예측 금액을 쉽게 확인할 수 있는 서비스를 구현합니다.
 
- 데이터 정제 및 전처리
+---
 
- 데이터 분석 및 시각화
+## 🛠 기술 스택
 
- Feature Engineering
+### Frontend
+- React
+- JavaScript
+- HTML
+- CSS
 
- Baseline 모델 구현
+### Database
+- SQLite
 
- 모델 비교 및 평가
+### Machine Learning
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- Matplotlib
 
- 최종 모델 선정
+※ 머신러닝 모델은 데이터 분석 후 최종 선정 예정입니다.
 
- 예측 API 구현
+### Version Control
+- Git
+- GitHub
 
- SQLite 데이터베이스 구성
+---
 
- React 프론트엔드 구현
+## 🤖 머신러닝 모델
 
- 프론트엔드 ↔ API 연동
+현재 데이터 수집 및 전처리 단계이며, 모델은 아직 선정되지 않았습니다.
 
- 배포
+데이터 특성과 예측 성능을 비교하여 아래와 같은 회귀 또는 시계열 예측 모델을 검토할 예정입니다.
 
-Tech Stack
+- Linear Regression
+- Random Forest Regressor
+- XGBoost
+- LSTM
+- 기타 시계열 예측 모델
 
-현재 고려하고 있는 기술 스택입니다.
+최종 모델은 MAE, RMSE, MAPE, R² 등의 평가 지표를 활용하여 성능을 비교한 뒤 선정할 예정입니다.
 
-Data / Machine Learning
+---
 
-Python
+## 📊 데이터
 
-Pandas
+현재 금 시세 예측에 활용할 데이터를 수집하고 있습니다.
 
-NumPy
+### 주요 데이터 후보
 
-Scikit-learn
+- 날짜
+- 금 가격
+- 국제 금 시세
+- 원/달러 환율
+- 금리
+- 기타 금 가격 변동과 관련된 데이터
 
-Kaggle Dataset
+수집된 데이터는 전처리 과정을 거친 후 모델 학습 및 검증에 사용합니다.
 
-TBD: Machine Learning / Deep Learning Model
+---
 
-모델은 데이터 분석 결과를 바탕으로 결정할 예정입니다.
+## ⚙️ 주요 기능
 
-예를 들어 다음과 같은 모델들을 비교할 수 있습니다.
+### 1. 금 시세 데이터 조회
+과거 금 시세 데이터를 날짜별로 조회할 수 있습니다.
 
-Linear Regression
+### 2. 금 시세 시각화
+과거 금 가격 변화를 그래프로 확인할 수 있습니다.
 
-Random Forest
+### 3. 금 시세 예측
+학습된 머신러닝 모델을 이용하여 향후 금 가격을 예측합니다.
 
-XGBoost / LightGBM
+### 4. 실제값 / 예측값 비교
+실제 금 시세와 모델이 예측한 값을 비교하여 모델의 성능을 확인합니다.
 
-LSTM
+### 5. 예측 결과 저장
+예측 날짜, 예측 가격 등의 정보를 SQLite 데이터베이스에 저장합니다.
 
-기타 시계열 예측 모델
+---
 
-Backend
+## 🧪 모델 검증
 
-TBD
+학습된 모델은 학습에 사용하지 않은 테스트 데이터를 이용하여 검증합니다.
 
-Python 기반 API framework 예정
+주요 평가 지표는 다음과 같습니다.
 
-SQLite
+- **MAE (Mean Absolute Error)**
+  - 실제값과 예측값의 평균 절대 오차
 
-백엔드 및 API 구조는 모델 선정 이후 구체화할 예정입니다.
+- **RMSE (Root Mean Squared Error)**
+  - 큰 예측 오차에 더 큰 영향을 주는 평가 지표
 
-Frontend
+- **MAPE (Mean Absolute Percentage Error)**
+  - 실제값 대비 평균 예측 오차 비율
 
-React
+- **R² Score**
+  - 모델이 실제 데이터의 변화를 얼마나 잘 설명하는지 평가
 
-JavaScript / TypeScript
+또한 실제 금 시세와 예측 금 시세를 그래프로 비교하여 모델의 예측 성능을 시각적으로 분석합니다.
 
-TBD: Chart Library
+---
 
-프론트엔드에서는 금 가격 데이터와 예측 결과를 차트 형태로 시각화하는 것을 목표로 합니다.
+## 👥 역할 분담
 
-Database
+| 역할 | 담당 업무 |
+|---|---|
+| 데이터 수집 | 금 시세 및 관련 데이터 수집, 데이터 정리 |
+| 기계학습 | 데이터 전처리, 모델 선정 및 학습 |
+| 검증 | 테스트 데이터 기반 모델 성능 평가, 오차 분석 및 시각화 |
+| 배포 | React 및 서버 연동, 예측 결과 웹 서비스 구현 |
 
-현재는 SQLite를 사용할 예정입니다.
+---
 
-주요 저장 데이터 예시:
+## 📁 프로젝트 구조
 
-과거 금 가격 데이터
-
-전처리된 데이터
-
-모델 예측 결과
-
-모델 관련 메타데이터
-
-프로젝트 규모와 배포 환경에 따라 추후 다른 데이터베이스로 변경될 수 있습니다.
-
-Dataset
-
-현재 Kaggle
-에서 금 가격 관련 데이터를 수집하고 있습니다.
-
-데이터셋에 따라 다음과 같은 정보를 활용할 수 있습니다.
-
-Date
-
-Open
-
-High
-
-Low
-
-Close
-
-Volume
-
-기타 시장 관련 지표
-
-실제 사용 데이터와 Feature는 데이터 탐색 및 전처리 과정에서 결정할 예정입니다.
-
-Dataset License
-
-사용하는 Kaggle 데이터셋의 라이선스 및 이용 조건을 확인한 후 기록할 예정입니다.
-
-Prediction
-
-최종적으로 다음과 같은 형태의 서비스를 만드는 것을 목표로 합니다.
-
-과거 금 가격 데이터
-        ↓
-     ML Model
-        ↓
-   미래 금 가격 예측
-        ↓
-   API를 통한 제공
-        ↓
-   React Dashboard
-
-
-웹 화면에서는 예를 들어 다음과 같은 정보를 제공할 예정입니다.
-
-금 가격 차트
-
-과거 가격 추이
-
-예측 가격
-
-실제 가격과 예측 가격 비교
-
-모델 성능 지표
-
-예측 결과 업데이트
-
-Project Structure
-
-초기에는 다음과 같은 구조를 고려하고 있습니다.
-
-gold-price-forecast/
-├── data/
-│   ├── raw/
-│   └── processed/
-│
-├── notebooks/
-│   └── exploration.ipynb
-│
-├── src/
-│   ├── data/
-│   ├── features/
-│   ├── models/
-│   └── evaluation/
-│
-├── backend/
-│   └── ...
+```text
+gold-price-prediction/
 │
 ├── frontend/
-│   └── ...
+│   ├── src/
+│   ├── public/
+│   └── package.json
 │
-├── database/
-│   └── ...
+├── backend/
+│   ├── app.py
+│   └── database/
+│       └── gold.db
 │
-├── tests/
+├── machine_learning/
+│   ├── data/
+│   ├── preprocessing/
+│   ├── models/
+│   ├── validation/
+│   └── prediction/
 │
-├── requirements.txt
 ├── README.md
-└── .gitignore
+└── requirements.txt
+```
 
+※ 프로젝트 진행 과정에 따라 디렉터리 구조는 변경될 수 있습니다.
 
-실제 구조는 프로젝트 진행 과정에서 변경될 수 있습니다.
+---
 
-Model Evaluation
+## 🚀 실행 방법
 
-단순히 예측값을 만드는 것뿐만 아니라 실제 가격과 비교하여 모델의 성능을 평가할 예정입니다.
+### Frontend
 
-고려 중인 평가 지표:
+```bash
+cd frontend
+npm install
+npm start
+```
 
-MAE
+또는 Vite를 사용하는 경우
 
-RMSE
+```bash
+npm run dev
+```
 
-MAPE
+### Machine Learning / Backend
 
-R²
+```bash
+pip install -r requirements.txt
+python app.py
+```
 
-최종적으로 데이터 특성과 예측 목적에 적합한 평가 방법을 선정할 예정입니다.
+※ 백엔드 프레임워크 및 실행 방식은 추후 개발 과정에 따라 변경될 수 있습니다.
 
-Development Plan
-Phase 1 — Data Collection
+---
 
-Kaggle 데이터 수집
+## 🔄 프로젝트 진행 상황
 
-데이터 구조 확인
+- [x] 프로젝트 주제 선정
+- [x] 역할 분담
+- [ ] 데이터 수집
+- [ ] 데이터 전처리
+- [ ] 데이터 분석
+- [ ] 머신러닝 모델 선정
+- [ ] 모델 학습
+- [ ] 모델 성능 검증
+- [ ] React UI 구현
+- [ ] SQLite 데이터베이스 연동
+- [ ] 머신러닝 모델과 웹 연동
+- [ ] 최종 테스트 및 배포
 
-결측치 및 이상치 확인
+---
 
-데이터 정제
+## 📈 향후 계획
 
-데이터베이스 저장 방식 결정
+1. 금 시세 관련 데이터 확보
+2. 결측치 및 이상치 처리
+3. 데이터 상관관계 분석
+4. 여러 머신러닝 모델 학습
+5. 모델별 예측 성능 비교
+6. 최적 모델 선정
+7. React 기반 사용자 화면 구현
+8. SQLite 데이터베이스 연동
+9. 예측 모델과 웹 서비스 연동
+10. 최종 테스트 및 결과 분석
 
-Phase 2 — Model Training
+---
 
-데이터 분석
+## 📌 기대 효과
 
-Feature Engineering
+금 시세 데이터를 직접 수집하고 분석하는 과정을 통해 데이터 전처리, 머신러닝 모델 학습, 모델 검증, 웹 서비스 구현까지 머신러닝 프로젝트의 전체 과정을 경험하는 것을 목표로 합니다.
 
-Baseline 모델 구현
-
-여러 모델 실험
-
-모델 성능 비교
-
-최종 모델 선정
-
-Phase 3 — Backend
-
-예측 모델 저장
-
-Prediction API 구현
-
-SQLite 연동
-
-예측 결과 저장 및 조회
-
-Phase 4 — Frontend
-
-React를 사용하여 금 가격 및 예측 결과를 확인할 수 있는 Dashboard를 구현합니다.
-
-예정 기능:
-
-금 가격 그래프
-
-미래 가격 예측
-
-실제 가격 / 예측 가격 비교
-
-모델 성능 확인
-
-데이터 조회
-
-Phase 5 — Integration
-React
-  ↕
-Prediction API
-  ↕
-ML Model
-  ↕
-SQLite
-
-
-프론트엔드와 백엔드를 연결하고 전체 서비스를 통합합니다.
-
-Disclaimer
-
-본 프로젝트의 예측 결과는 머신러닝 모델에 기반한 실험적 예측값이며 실제 금 가격의 미래 움직임을 보장하지 않습니다.
-
-본 프로젝트는 머신러닝 및 시계열 데이터 분석을 학습하고 실험하기 위한 목적으로 제작되었습니다.
-
-License
-
-TBD
+또한 실제값과 예측값의 차이를 분석하여 머신러닝 모델의 성능과 한계를 이해하고, 이를 웹 서비스 형태로 구현하여 사용자가 쉽게 결과를 확인할 수 있도록 합니다.
