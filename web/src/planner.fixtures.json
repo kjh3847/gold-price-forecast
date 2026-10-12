@@ -1,0 +1,1087 @@
+{
+  "split_rule": {
+    "낮음": [
+      0
+    ],
+    "보통": [
+      0,
+      3
+    ],
+    "높음": [
+      0,
+      2,
+      4
+    ],
+    "매우 높음": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "cases": [
+    {
+      "name": "낮음 / 300,000원 / 휴장 없음",
+      "grade": "낮음",
+      "weekly_amount": 300000,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 300000
+        }
+      ]
+    },
+    {
+      "name": "낮음 / 300,000원 / 월·목 휴장",
+      "grade": "낮음",
+      "weekly_amount": 300000,
+      "trading_weekdays": [
+        1,
+        2,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 1,
+          "amount": 300000
+        }
+      ]
+    },
+    {
+      "name": "낮음 / 300,000원 / 금 휴장",
+      "grade": "낮음",
+      "weekly_amount": 300000,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 300000
+        }
+      ]
+    },
+    {
+      "name": "낮음 / 100,000원 / 휴장 없음",
+      "grade": "낮음",
+      "weekly_amount": 100000,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 100000
+        }
+      ]
+    },
+    {
+      "name": "낮음 / 100,000원 / 월·목 휴장",
+      "grade": "낮음",
+      "weekly_amount": 100000,
+      "trading_weekdays": [
+        1,
+        2,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 1,
+          "amount": 100000
+        }
+      ]
+    },
+    {
+      "name": "낮음 / 100,000원 / 금 휴장",
+      "grade": "낮음",
+      "weekly_amount": 100000,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 100000
+        }
+      ]
+    },
+    {
+      "name": "낮음 / 99,999원 / 휴장 없음",
+      "grade": "낮음",
+      "weekly_amount": 99999,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 99999
+        }
+      ]
+    },
+    {
+      "name": "낮음 / 99,999원 / 월·목 휴장",
+      "grade": "낮음",
+      "weekly_amount": 99999,
+      "trading_weekdays": [
+        1,
+        2,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 1,
+          "amount": 99999
+        }
+      ]
+    },
+    {
+      "name": "낮음 / 99,999원 / 금 휴장",
+      "grade": "낮음",
+      "weekly_amount": 99999,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 99999
+        }
+      ]
+    },
+    {
+      "name": "보통 / 300,000원 / 휴장 없음",
+      "grade": "보통",
+      "weekly_amount": 300000,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 150000
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 3,
+          "trade_weekday": 3,
+          "amount": 150000
+        }
+      ]
+    },
+    {
+      "name": "보통 / 300,000원 / 월·목 휴장",
+      "grade": "보통",
+      "weekly_amount": 300000,
+      "trading_weekdays": [
+        1,
+        2,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 1,
+          "amount": 150000
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 3,
+          "trade_weekday": 4,
+          "amount": 150000
+        }
+      ]
+    },
+    {
+      "name": "보통 / 300,000원 / 금 휴장",
+      "grade": "보통",
+      "weekly_amount": 300000,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 150000
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 3,
+          "trade_weekday": 3,
+          "amount": 150000
+        }
+      ]
+    },
+    {
+      "name": "보통 / 100,000원 / 휴장 없음",
+      "grade": "보통",
+      "weekly_amount": 100000,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 50000
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 3,
+          "trade_weekday": 3,
+          "amount": 50000
+        }
+      ]
+    },
+    {
+      "name": "보통 / 100,000원 / 월·목 휴장",
+      "grade": "보통",
+      "weekly_amount": 100000,
+      "trading_weekdays": [
+        1,
+        2,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 1,
+          "amount": 50000
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 3,
+          "trade_weekday": 4,
+          "amount": 50000
+        }
+      ]
+    },
+    {
+      "name": "보통 / 100,000원 / 금 휴장",
+      "grade": "보통",
+      "weekly_amount": 100000,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 50000
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 3,
+          "trade_weekday": 3,
+          "amount": 50000
+        }
+      ]
+    },
+    {
+      "name": "보통 / 99,999원 / 휴장 없음",
+      "grade": "보통",
+      "weekly_amount": 99999,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 49999
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 3,
+          "trade_weekday": 3,
+          "amount": 50000
+        }
+      ]
+    },
+    {
+      "name": "보통 / 99,999원 / 월·목 휴장",
+      "grade": "보통",
+      "weekly_amount": 99999,
+      "trading_weekdays": [
+        1,
+        2,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 1,
+          "amount": 49999
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 3,
+          "trade_weekday": 4,
+          "amount": 50000
+        }
+      ]
+    },
+    {
+      "name": "보통 / 99,999원 / 금 휴장",
+      "grade": "보통",
+      "weekly_amount": 99999,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 49999
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 3,
+          "trade_weekday": 3,
+          "amount": 50000
+        }
+      ]
+    },
+    {
+      "name": "높음 / 300,000원 / 휴장 없음",
+      "grade": "높음",
+      "weekly_amount": 300000,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 100000
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 2,
+          "trade_weekday": 2,
+          "amount": 100000
+        },
+        {
+          "seq": 3,
+          "planned_weekday": 4,
+          "trade_weekday": 4,
+          "amount": 100000
+        }
+      ]
+    },
+    {
+      "name": "높음 / 300,000원 / 월·목 휴장",
+      "grade": "높음",
+      "weekly_amount": 300000,
+      "trading_weekdays": [
+        1,
+        2,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 1,
+          "amount": 100000
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 2,
+          "trade_weekday": 2,
+          "amount": 100000
+        },
+        {
+          "seq": 3,
+          "planned_weekday": 4,
+          "trade_weekday": 4,
+          "amount": 100000
+        }
+      ]
+    },
+    {
+      "name": "높음 / 300,000원 / 금 휴장",
+      "grade": "높음",
+      "weekly_amount": 300000,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 100000
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 2,
+          "trade_weekday": 2,
+          "amount": 100000
+        },
+        {
+          "seq": 3,
+          "planned_weekday": 4,
+          "trade_weekday": 3,
+          "amount": 100000
+        }
+      ]
+    },
+    {
+      "name": "높음 / 100,000원 / 휴장 없음",
+      "grade": "높음",
+      "weekly_amount": 100000,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 33333
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 2,
+          "trade_weekday": 2,
+          "amount": 33333
+        },
+        {
+          "seq": 3,
+          "planned_weekday": 4,
+          "trade_weekday": 4,
+          "amount": 33334
+        }
+      ]
+    },
+    {
+      "name": "높음 / 100,000원 / 월·목 휴장",
+      "grade": "높음",
+      "weekly_amount": 100000,
+      "trading_weekdays": [
+        1,
+        2,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 1,
+          "amount": 33333
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 2,
+          "trade_weekday": 2,
+          "amount": 33333
+        },
+        {
+          "seq": 3,
+          "planned_weekday": 4,
+          "trade_weekday": 4,
+          "amount": 33334
+        }
+      ]
+    },
+    {
+      "name": "높음 / 100,000원 / 금 휴장",
+      "grade": "높음",
+      "weekly_amount": 100000,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 33333
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 2,
+          "trade_weekday": 2,
+          "amount": 33333
+        },
+        {
+          "seq": 3,
+          "planned_weekday": 4,
+          "trade_weekday": 3,
+          "amount": 33334
+        }
+      ]
+    },
+    {
+      "name": "높음 / 99,999원 / 휴장 없음",
+      "grade": "높음",
+      "weekly_amount": 99999,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 33333
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 2,
+          "trade_weekday": 2,
+          "amount": 33333
+        },
+        {
+          "seq": 3,
+          "planned_weekday": 4,
+          "trade_weekday": 4,
+          "amount": 33333
+        }
+      ]
+    },
+    {
+      "name": "높음 / 99,999원 / 월·목 휴장",
+      "grade": "높음",
+      "weekly_amount": 99999,
+      "trading_weekdays": [
+        1,
+        2,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 1,
+          "amount": 33333
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 2,
+          "trade_weekday": 2,
+          "amount": 33333
+        },
+        {
+          "seq": 3,
+          "planned_weekday": 4,
+          "trade_weekday": 4,
+          "amount": 33333
+        }
+      ]
+    },
+    {
+      "name": "높음 / 99,999원 / 금 휴장",
+      "grade": "높음",
+      "weekly_amount": 99999,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 33333
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 2,
+          "trade_weekday": 2,
+          "amount": 33333
+        },
+        {
+          "seq": 3,
+          "planned_weekday": 4,
+          "trade_weekday": 3,
+          "amount": 33333
+        }
+      ]
+    },
+    {
+      "name": "매우 높음 / 300,000원 / 휴장 없음",
+      "grade": "매우 높음",
+      "weekly_amount": 300000,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 60000
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 1,
+          "trade_weekday": 1,
+          "amount": 60000
+        },
+        {
+          "seq": 3,
+          "planned_weekday": 2,
+          "trade_weekday": 2,
+          "amount": 60000
+        },
+        {
+          "seq": 4,
+          "planned_weekday": 3,
+          "trade_weekday": 3,
+          "amount": 60000
+        },
+        {
+          "seq": 5,
+          "planned_weekday": 4,
+          "trade_weekday": 4,
+          "amount": 60000
+        }
+      ]
+    },
+    {
+      "name": "매우 높음 / 300,000원 / 월·목 휴장",
+      "grade": "매우 높음",
+      "weekly_amount": 300000,
+      "trading_weekdays": [
+        1,
+        2,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 1,
+          "amount": 60000
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 1,
+          "trade_weekday": 1,
+          "amount": 60000
+        },
+        {
+          "seq": 3,
+          "planned_weekday": 2,
+          "trade_weekday": 2,
+          "amount": 60000
+        },
+        {
+          "seq": 4,
+          "planned_weekday": 3,
+          "trade_weekday": 4,
+          "amount": 60000
+        },
+        {
+          "seq": 5,
+          "planned_weekday": 4,
+          "trade_weekday": 4,
+          "amount": 60000
+        }
+      ]
+    },
+    {
+      "name": "매우 높음 / 300,000원 / 금 휴장",
+      "grade": "매우 높음",
+      "weekly_amount": 300000,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 60000
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 1,
+          "trade_weekday": 1,
+          "amount": 60000
+        },
+        {
+          "seq": 3,
+          "planned_weekday": 2,
+          "trade_weekday": 2,
+          "amount": 60000
+        },
+        {
+          "seq": 4,
+          "planned_weekday": 3,
+          "trade_weekday": 3,
+          "amount": 60000
+        },
+        {
+          "seq": 5,
+          "planned_weekday": 4,
+          "trade_weekday": 3,
+          "amount": 60000
+        }
+      ]
+    },
+    {
+      "name": "매우 높음 / 100,000원 / 휴장 없음",
+      "grade": "매우 높음",
+      "weekly_amount": 100000,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 20000
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 1,
+          "trade_weekday": 1,
+          "amount": 20000
+        },
+        {
+          "seq": 3,
+          "planned_weekday": 2,
+          "trade_weekday": 2,
+          "amount": 20000
+        },
+        {
+          "seq": 4,
+          "planned_weekday": 3,
+          "trade_weekday": 3,
+          "amount": 20000
+        },
+        {
+          "seq": 5,
+          "planned_weekday": 4,
+          "trade_weekday": 4,
+          "amount": 20000
+        }
+      ]
+    },
+    {
+      "name": "매우 높음 / 100,000원 / 월·목 휴장",
+      "grade": "매우 높음",
+      "weekly_amount": 100000,
+      "trading_weekdays": [
+        1,
+        2,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 1,
+          "amount": 20000
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 1,
+          "trade_weekday": 1,
+          "amount": 20000
+        },
+        {
+          "seq": 3,
+          "planned_weekday": 2,
+          "trade_weekday": 2,
+          "amount": 20000
+        },
+        {
+          "seq": 4,
+          "planned_weekday": 3,
+          "trade_weekday": 4,
+          "amount": 20000
+        },
+        {
+          "seq": 5,
+          "planned_weekday": 4,
+          "trade_weekday": 4,
+          "amount": 20000
+        }
+      ]
+    },
+    {
+      "name": "매우 높음 / 100,000원 / 금 휴장",
+      "grade": "매우 높음",
+      "weekly_amount": 100000,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 20000
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 1,
+          "trade_weekday": 1,
+          "amount": 20000
+        },
+        {
+          "seq": 3,
+          "planned_weekday": 2,
+          "trade_weekday": 2,
+          "amount": 20000
+        },
+        {
+          "seq": 4,
+          "planned_weekday": 3,
+          "trade_weekday": 3,
+          "amount": 20000
+        },
+        {
+          "seq": 5,
+          "planned_weekday": 4,
+          "trade_weekday": 3,
+          "amount": 20000
+        }
+      ]
+    },
+    {
+      "name": "매우 높음 / 99,999원 / 휴장 없음",
+      "grade": "매우 높음",
+      "weekly_amount": 99999,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 19999
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 1,
+          "trade_weekday": 1,
+          "amount": 19999
+        },
+        {
+          "seq": 3,
+          "planned_weekday": 2,
+          "trade_weekday": 2,
+          "amount": 19999
+        },
+        {
+          "seq": 4,
+          "planned_weekday": 3,
+          "trade_weekday": 3,
+          "amount": 19999
+        },
+        {
+          "seq": 5,
+          "planned_weekday": 4,
+          "trade_weekday": 4,
+          "amount": 20003
+        }
+      ]
+    },
+    {
+      "name": "매우 높음 / 99,999원 / 월·목 휴장",
+      "grade": "매우 높음",
+      "weekly_amount": 99999,
+      "trading_weekdays": [
+        1,
+        2,
+        4
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 1,
+          "amount": 19999
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 1,
+          "trade_weekday": 1,
+          "amount": 19999
+        },
+        {
+          "seq": 3,
+          "planned_weekday": 2,
+          "trade_weekday": 2,
+          "amount": 19999
+        },
+        {
+          "seq": 4,
+          "planned_weekday": 3,
+          "trade_weekday": 4,
+          "amount": 19999
+        },
+        {
+          "seq": 5,
+          "planned_weekday": 4,
+          "trade_weekday": 4,
+          "amount": 20003
+        }
+      ]
+    },
+    {
+      "name": "매우 높음 / 99,999원 / 금 휴장",
+      "grade": "매우 높음",
+      "weekly_amount": 99999,
+      "trading_weekdays": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expected": [
+        {
+          "seq": 1,
+          "planned_weekday": 0,
+          "trade_weekday": 0,
+          "amount": 19999
+        },
+        {
+          "seq": 2,
+          "planned_weekday": 1,
+          "trade_weekday": 1,
+          "amount": 19999
+        },
+        {
+          "seq": 3,
+          "planned_weekday": 2,
+          "trade_weekday": 2,
+          "amount": 19999
+        },
+        {
+          "seq": 4,
+          "planned_weekday": 3,
+          "trade_weekday": 3,
+          "amount": 19999
+        },
+        {
+          "seq": 5,
+          "planned_weekday": 4,
+          "trade_weekday": 3,
+          "amount": 20003
+        }
+      ]
+    }
+  ]
+}

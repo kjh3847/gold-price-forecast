@@ -1,0 +1,2144 @@
+{
+  "generated_at": "2026-10-12T08:35:01+00:00",
+  "as_of": "2026-09-24",
+  "currency": "USD",
+  "unit": "oz",
+  "price": 4273.8,
+  "sigma_daily": 0.013111,
+  "grade": "낮음",
+  "percentile": 0.3254,
+  "is_fallback": false,
+  "band": {
+    "horizon_days": 5,
+    "coverage": 0.9,
+    "z": 1.8323,
+    "z_is_default": false,
+    "low": 4050.27,
+    "high": 4509.67
+  },
+  "history": [
+    {
+      "date": "2025-09-17",
+      "price": 3681.0,
+      "sigma_daily": 0.008316,
+      "grade": "낮음",
+      "band_low": 3553.61,
+      "band_high": 3812.96
+    },
+    {
+      "date": "2025-09-18",
+      "price": 3643.7,
+      "sigma_daily": 0.008473,
+      "grade": "보통",
+      "band_low": 3515.26,
+      "band_high": 3776.84
+    },
+    {
+      "date": "2025-09-19",
+      "price": 3663.15,
+      "sigma_daily": 0.008488,
+      "grade": "보통",
+      "band_low": 3533.8,
+      "band_high": 3797.24
+    },
+    {
+      "date": "2025-09-22",
+      "price": 3719.7,
+      "sigma_daily": 0.008956,
+      "grade": "보통",
+      "band_low": 3581.25,
+      "band_high": 3863.51
+    },
+    {
+      "date": "2025-09-23",
+      "price": 3783.8,
+      "sigma_daily": 0.009513,
+      "grade": "보통",
+      "band_low": 3634.37,
+      "band_high": 3939.37
+    },
+    {
+      "date": "2025-09-24",
+      "price": 3761.6,
+      "sigma_daily": 0.009578,
+      "grade": "보통",
+      "band_low": 3612.06,
+      "band_high": 3917.34
+    },
+    {
+      "date": "2025-09-25",
+      "price": 3730.75,
+      "sigma_daily": 0.009505,
+      "grade": "보통",
+      "band_low": 3583.54,
+      "band_high": 3884.01
+    },
+    {
+      "date": "2025-09-26",
+      "price": 3769.85,
+      "sigma_daily": 0.009608,
+      "grade": "보통",
+      "band_low": 3619.52,
+      "band_high": 3926.42
+    },
+    {
+      "date": "2025-09-29",
+      "price": 3826.85,
+      "sigma_daily": 0.009835,
+      "grade": "높음",
+      "band_low": 3670.71,
+      "band_high": 3989.63
+    },
+    {
+      "date": "2025-09-30",
+      "price": 3825.3,
+      "sigma_daily": 0.009893,
+      "grade": "높음",
+      "band_low": 3668.32,
+      "band_high": 3989.0
+    },
+    {
+      "date": "2025-10-01",
+      "price": 3872.0,
+      "sigma_daily": 0.009696,
+      "grade": "높음",
+      "band_low": 3716.2,
+      "band_high": 4034.33
+    },
+    {
+      "date": "2025-10-02",
+      "price": 3878.1,
+      "sigma_daily": 0.009727,
+      "grade": "높음",
+      "band_low": 3721.57,
+      "band_high": 4041.22
+    },
+    {
+      "date": "2025-10-03",
+      "price": 3885.7,
+      "sigma_daily": 0.009293,
+      "grade": "보통",
+      "band_low": 3735.73,
+      "band_high": 4041.69
+    },
+    {
+      "date": "2025-10-06",
+      "price": 3949.45,
+      "sigma_daily": 0.00955,
+      "grade": "보통",
+      "band_low": 3792.89,
+      "band_high": 4112.48
+    },
+    {
+      "date": "2025-10-07",
+      "price": 3979.0,
+      "sigma_daily": 0.009506,
+      "grade": "보통",
+      "band_low": 3821.97,
+      "band_high": 4142.48
+    },
+    {
+      "date": "2025-10-08",
+      "price": 4040.05,
+      "sigma_daily": 0.009738,
+      "grade": "높음",
+      "band_low": 3875.52,
+      "band_high": 4211.56
+    },
+    {
+      "date": "2025-10-09",
+      "price": 4019.25,
+      "sigma_daily": 0.009761,
+      "grade": "높음",
+      "band_low": 3855.19,
+      "band_high": 4190.29
+    },
+    {
+      "date": "2025-10-10",
+      "price": 3974.5,
+      "sigma_daily": 0.009872,
+      "grade": "높음",
+      "band_low": 3810.45,
+      "band_high": 4145.61
+    },
+    {
+      "date": "2025-10-13",
+      "price": 4095.95,
+      "sigma_daily": 0.011366,
+      "grade": "높음",
+      "band_low": 3901.94,
+      "band_high": 4299.61
+    },
+    {
+      "date": "2025-10-14",
+      "price": 4126.3,
+      "sigma_daily": 0.011404,
+      "grade": "높음",
+      "band_low": 3930.2,
+      "band_high": 4332.18
+    },
+    {
+      "date": "2025-10-15",
+      "price": 4204.6,
+      "sigma_daily": 0.011718,
+      "grade": "높음",
+      "band_low": 3999.41,
+      "band_high": 4420.31
+    },
+    {
+      "date": "2025-10-16",
+      "price": 4261.95,
+      "sigma_daily": 0.011835,
+      "grade": "높음",
+      "band_low": 4048.74,
+      "band_high": 4486.39
+    },
+    {
+      "date": "2025-10-17",
+      "price": 4224.75,
+      "sigma_daily": 0.011822,
+      "grade": "높음",
+      "band_low": 4012.29,
+      "band_high": 4448.46
+    },
+    {
+      "date": "2025-10-20",
+      "price": 4294.35,
+      "sigma_daily": 0.011799,
+      "grade": "높음",
+      "band_low": 4078.8,
+      "band_high": 4521.29
+    },
+    {
+      "date": "2025-10-21",
+      "price": 4169.6,
+      "sigma_daily": 0.012987,
+      "grade": "높음",
+      "band_low": 3939.84,
+      "band_high": 4412.76
+    },
+    {
+      "date": "2025-10-22",
+      "price": 4070.0,
+      "sigma_daily": 0.013542,
+      "grade": "높음",
+      "band_low": 3836.42,
+      "band_high": 4317.8
+    },
+    {
+      "date": "2025-10-23",
+      "price": 4143.75,
+      "sigma_daily": 0.013671,
+      "grade": "매우 높음",
+      "band_low": 3903.74,
+      "band_high": 4398.51
+    },
+    {
+      "date": "2025-10-24",
+      "price": 4104.4,
+      "sigma_daily": 0.013631,
+      "grade": "높음",
+      "band_low": 3867.35,
+      "band_high": 4355.99
+    },
+    {
+      "date": "2025-10-27",
+      "price": 3970.8,
+      "sigma_daily": 0.014711,
+      "grade": "매우 높음",
+      "band_low": 3723.01,
+      "band_high": 4235.08
+    },
+    {
+      "date": "2025-10-28",
+      "price": 3948.5,
+      "sigma_daily": 0.014574,
+      "grade": "매우 높음",
+      "band_low": 3704.32,
+      "band_high": 4208.77
+    },
+    {
+      "date": "2025-10-29",
+      "price": 4006.7,
+      "sigma_daily": 0.014334,
+      "grade": "매우 높음",
+      "band_low": 3762.88,
+      "band_high": 4266.31
+    },
+    {
+      "date": "2025-10-30",
+      "price": 3994.15,
+      "sigma_daily": 0.014231,
+      "grade": "매우 높음",
+      "band_low": 3752.79,
+      "band_high": 4251.03
+    },
+    {
+      "date": "2025-10-31",
+      "price": 4011.5,
+      "sigma_daily": 0.013921,
+      "grade": "높음",
+      "band_low": 3774.21,
+      "band_high": 4263.71
+    },
+    {
+      "date": "2025-11-03",
+      "price": 4025.25,
+      "sigma_daily": 0.013274,
+      "grade": "높음",
+      "band_low": 3797.9,
+      "band_high": 4266.21
+    },
+    {
+      "date": "2025-11-04",
+      "price": 3951.1,
+      "sigma_daily": 0.013526,
+      "grade": "높음",
+      "band_low": 3723.81,
+      "band_high": 4192.26
+    },
+    {
+      "date": "2025-11-05",
+      "price": 3968.2,
+      "sigma_daily": 0.013303,
+      "grade": "높음",
+      "band_low": 3743.58,
+      "band_high": 4206.29
+    },
+    {
+      "date": "2025-11-06",
+      "price": 3986.5,
+      "sigma_daily": 0.013105,
+      "grade": "높음",
+      "band_low": 3764.12,
+      "band_high": 4222.02
+    },
+    {
+      "date": "2025-11-07",
+      "price": 3994.1,
+      "sigma_daily": 0.012929,
+      "grade": "높음",
+      "band_low": 3774.97,
+      "band_high": 4225.96
+    },
+    {
+      "date": "2025-11-10",
+      "price": 4090.25,
+      "sigma_daily": 0.013408,
+      "grade": "높음",
+      "band_low": 3857.77,
+      "band_high": 4336.74
+    },
+    {
+      "date": "2025-11-11",
+      "price": 4123.3,
+      "sigma_daily": 0.013268,
+      "grade": "높음",
+      "band_low": 3891.32,
+      "band_high": 4369.11
+    },
+    {
+      "date": "2025-11-12",
+      "price": 4136.75,
+      "sigma_daily": 0.012891,
+      "grade": "높음",
+      "band_low": 3911.84,
+      "band_high": 4374.6
+    },
+    {
+      "date": "2025-11-13",
+      "price": 4195.65,
+      "sigma_daily": 0.012842,
+      "grade": "높음",
+      "band_low": 3971.8,
+      "band_high": 4432.11
+    },
+    {
+      "date": "2025-11-14",
+      "price": 4071.1,
+      "sigma_daily": 0.01385,
+      "grade": "높음",
+      "band_low": 3837.35,
+      "band_high": 4319.09
+    },
+    {
+      "date": "2025-11-17",
+      "price": 4072.5,
+      "sigma_daily": 0.013976,
+      "grade": "높음",
+      "band_low": 3838.42,
+      "band_high": 4320.85
+    },
+    {
+      "date": "2025-11-18",
+      "price": 4060.85,
+      "sigma_daily": 0.013497,
+      "grade": "높음",
+      "band_low": 3836.48,
+      "band_high": 4298.34
+    },
+    {
+      "date": "2025-11-19",
+      "price": 4126.95,
+      "sigma_daily": 0.013386,
+      "grade": "높음",
+      "band_low": 3900.76,
+      "band_high": 4366.26
+    },
+    {
+      "date": "2025-11-20",
+      "price": 4090.6,
+      "sigma_daily": 0.013035,
+      "grade": "높음",
+      "band_low": 3872.12,
+      "band_high": 4321.41
+    },
+    {
+      "date": "2025-11-21",
+      "price": 4072.85,
+      "sigma_daily": 0.012383,
+      "grade": "높음",
+      "band_low": 3865.91,
+      "band_high": 4290.86
+    },
+    {
+      "date": "2025-11-24",
+      "price": 4082.05,
+      "sigma_daily": 0.012138,
+      "grade": "높음",
+      "band_low": 3878.64,
+      "band_high": 4296.13
+    },
+    {
+      "date": "2025-11-25",
+      "price": 4126.45,
+      "sigma_daily": 0.011986,
+      "grade": "높음",
+      "band_low": 3924.24,
+      "band_high": 4339.07
+    },
+    {
+      "date": "2025-11-26",
+      "price": 4139.6,
+      "sigma_daily": 0.01128,
+      "grade": "높음",
+      "band_low": 3948.41,
+      "band_high": 4340.04
+    },
+    {
+      "date": "2025-11-27",
+      "price": 4153.95,
+      "sigma_daily": 0.011016,
+      "grade": "보통",
+      "band_low": 3966.48,
+      "band_high": 4350.28
+    },
+    {
+      "date": "2025-11-28",
+      "price": 4191.05,
+      "sigma_daily": 0.010851,
+      "grade": "보통",
+      "band_low": 4004.69,
+      "band_high": 4386.08
+    },
+    {
+      "date": "2025-12-01",
+      "price": 4238.85,
+      "sigma_daily": 0.010957,
+      "grade": "보통",
+      "band_low": 4048.56,
+      "band_high": 4438.08
+    },
+    {
+      "date": "2025-12-02",
+      "price": 4214.75,
+      "sigma_daily": 0.010839,
+      "grade": "보통",
+      "band_low": 4027.54,
+      "band_high": 4410.66
+    },
+    {
+      "date": "2025-12-03",
+      "price": 4210.3,
+      "sigma_daily": 0.010797,
+      "grade": "보통",
+      "band_low": 4023.99,
+      "band_high": 4405.24
+    },
+    {
+      "date": "2025-12-04",
+      "price": 4200.6,
+      "sigma_daily": 0.010399,
+      "grade": "보통",
+      "band_low": 4021.42,
+      "band_high": 4387.76
+    },
+    {
+      "date": "2025-12-05",
+      "price": 4243.0,
+      "sigma_daily": 0.010328,
+      "grade": "보통",
+      "band_low": 4063.22,
+      "band_high": 4430.73
+    },
+    {
+      "date": "2025-12-08",
+      "price": 4188.25,
+      "sigma_daily": 0.010511,
+      "grade": "보통",
+      "band_low": 4007.72,
+      "band_high": 4376.91
+    },
+    {
+      "date": "2025-12-09",
+      "price": 4198.0,
+      "sigma_daily": 0.010473,
+      "grade": "보통",
+      "band_low": 4017.69,
+      "band_high": 4386.4
+    },
+    {
+      "date": "2025-12-10",
+      "price": 4200.15,
+      "sigma_daily": 0.010101,
+      "grade": "보통",
+      "band_low": 4026.01,
+      "band_high": 4381.82
+    },
+    {
+      "date": "2025-12-11",
+      "price": 4230.35,
+      "sigma_daily": 0.009868,
+      "grade": "보통",
+      "band_low": 4058.93,
+      "band_high": 4409.01
+    },
+    {
+      "date": "2025-12-12",
+      "price": 4346.95,
+      "sigma_daily": 0.011264,
+      "grade": "높음",
+      "band_low": 4146.47,
+      "band_high": 4557.12
+    },
+    {
+      "date": "2025-12-15",
+      "price": 4315.85,
+      "sigma_daily": 0.011153,
+      "grade": "보통",
+      "band_low": 4118.72,
+      "band_high": 4522.42
+    },
+    {
+      "date": "2025-12-16",
+      "price": 4324.2,
+      "sigma_daily": 0.010517,
+      "grade": "보통",
+      "band_low": 4137.71,
+      "band_high": 4519.1
+    },
+    {
+      "date": "2025-12-17",
+      "price": 4342.1,
+      "sigma_daily": 0.010331,
+      "grade": "보통",
+      "band_low": 4158.08,
+      "band_high": 4534.27
+    },
+    {
+      "date": "2025-12-18",
+      "price": 4333.35,
+      "sigma_daily": 0.010214,
+      "grade": "보통",
+      "band_low": 4151.72,
+      "band_high": 4522.92
+    },
+    {
+      "date": "2025-12-19",
+      "price": 4337.6,
+      "sigma_daily": 0.009411,
+      "grade": "보통",
+      "band_low": 4169.81,
+      "band_high": 4512.14
+    },
+    {
+      "date": "2025-12-22",
+      "price": 4421.65,
+      "sigma_daily": 0.01011,
+      "grade": "보통",
+      "band_low": 4238.18,
+      "band_high": 4613.07
+    },
+    {
+      "date": "2025-12-23",
+      "price": 4449.4,
+      "sigma_daily": 0.0101,
+      "grade": "보통",
+      "band_low": 4264.96,
+      "band_high": 4641.82
+    },
+    {
+      "date": "2025-12-29",
+      "price": 4337.05,
+      "sigma_daily": 0.011328,
+      "grade": "높음",
+      "band_low": 4135.91,
+      "band_high": 4547.97
+    },
+    {
+      "date": "2025-12-30",
+      "price": 4367.8,
+      "sigma_daily": 0.011262,
+      "grade": "보통",
+      "band_low": 4166.38,
+      "band_high": 4578.95
+    },
+    {
+      "date": "2026-01-02",
+      "price": 4352.95,
+      "sigma_daily": 0.011158,
+      "grade": "보통",
+      "band_low": 4154.03,
+      "band_high": 4561.39
+    },
+    {
+      "date": "2026-01-05",
+      "price": 4456.4,
+      "sigma_daily": 0.011813,
+      "grade": "높음",
+      "band_low": 4241.09,
+      "band_high": 4682.64
+    },
+    {
+      "date": "2026-01-06",
+      "price": 4490.35,
+      "sigma_daily": 0.011763,
+      "grade": "높음",
+      "band_low": 4274.29,
+      "band_high": 4717.33
+    },
+    {
+      "date": "2026-01-07",
+      "price": 4438.0,
+      "sigma_daily": 0.011585,
+      "grade": "높음",
+      "band_low": 4227.62,
+      "band_high": 4658.85
+    },
+    {
+      "date": "2026-01-08",
+      "price": 4429.35,
+      "sigma_daily": 0.011518,
+      "grade": "높음",
+      "band_low": 4220.57,
+      "band_high": 4648.46
+    },
+    {
+      "date": "2026-01-09",
+      "price": 4493.85,
+      "sigma_daily": 0.011581,
+      "grade": "높음",
+      "band_low": 4280.9,
+      "band_high": 4717.4
+    },
+    {
+      "date": "2026-01-12",
+      "price": 4612.95,
+      "sigma_daily": 0.012463,
+      "grade": "높음",
+      "band_low": 4378.14,
+      "band_high": 4860.36
+    },
+    {
+      "date": "2026-01-13",
+      "price": 4623.05,
+      "sigma_daily": 0.012419,
+      "grade": "높음",
+      "band_low": 4388.54,
+      "band_high": 4870.09
+    },
+    {
+      "date": "2026-01-14",
+      "price": 4606.5,
+      "sigma_daily": 0.012086,
+      "grade": "높음",
+      "band_low": 4378.92,
+      "band_high": 4845.9
+    },
+    {
+      "date": "2026-01-15",
+      "price": 4610.85,
+      "sigma_daily": 0.012012,
+      "grade": "높음",
+      "band_low": 4384.42,
+      "band_high": 4848.98
+    },
+    {
+      "date": "2026-01-16",
+      "price": 4611.05,
+      "sigma_daily": 0.011948,
+      "grade": "높음",
+      "band_low": 4385.79,
+      "band_high": 4847.88
+    },
+    {
+      "date": "2026-01-19",
+      "price": 4666.85,
+      "sigma_daily": 0.01117,
+      "grade": "보통",
+      "band_low": 4453.36,
+      "band_high": 4890.57
+    },
+    {
+      "date": "2026-01-20",
+      "price": 4747.8,
+      "sigma_daily": 0.011394,
+      "grade": "보통",
+      "band_low": 4526.37,
+      "band_high": 4980.06
+    },
+    {
+      "date": "2026-01-21",
+      "price": 4866.5,
+      "sigma_daily": 0.012348,
+      "grade": "높음",
+      "band_low": 4619.91,
+      "band_high": 5126.25
+    },
+    {
+      "date": "2026-01-22",
+      "price": 4832.05,
+      "sigma_daily": 0.01235,
+      "grade": "높음",
+      "band_low": 4587.19,
+      "band_high": 5089.99
+    },
+    {
+      "date": "2026-01-23",
+      "price": 4946.25,
+      "sigma_daily": 0.012966,
+      "grade": "높음",
+      "band_low": 4681.93,
+      "band_high": 5225.49
+    },
+    {
+      "date": "2026-01-26",
+      "price": 5090.8,
+      "sigma_daily": 0.013983,
+      "grade": "높음",
+      "band_low": 4795.77,
+      "band_high": 5403.98
+    },
+    {
+      "date": "2026-01-27",
+      "price": 5064.25,
+      "sigma_daily": 0.013909,
+      "grade": "높음",
+      "band_low": 4767.82,
+      "band_high": 5379.11
+    },
+    {
+      "date": "2026-01-28",
+      "price": 5306.95,
+      "sigma_daily": 0.016212,
+      "grade": "매우 높음",
+      "band_low": 4944.43,
+      "band_high": 5696.04
+    },
+    {
+      "date": "2026-01-29",
+      "price": 5405.0,
+      "sigma_daily": 0.016369,
+      "grade": "매우 높음",
+      "band_low": 5031.04,
+      "band_high": 5806.75
+    },
+    {
+      "date": "2026-01-30",
+      "price": 4981.85,
+      "sigma_daily": 0.022311,
+      "grade": "매우 높음",
+      "band_low": 4518.04,
+      "band_high": 5493.28
+    },
+    {
+      "date": "2026-02-02",
+      "price": 4714.75,
+      "sigma_daily": 0.024207,
+      "grade": "매우 높음",
+      "band_low": 4232.24,
+      "band_high": 5252.27
+    },
+    {
+      "date": "2026-02-03",
+      "price": 4920.95,
+      "sigma_daily": 0.024978,
+      "grade": "매우 높음",
+      "band_low": 4402.17,
+      "band_high": 5500.86
+    },
+    {
+      "date": "2026-02-04",
+      "price": 4985.1,
+      "sigma_daily": 0.024497,
+      "grade": "매우 높음",
+      "band_low": 4469.14,
+      "band_high": 5560.63
+    },
+    {
+      "date": "2026-02-05",
+      "price": 4847.25,
+      "sigma_daily": 0.024395,
+      "grade": "매우 높음",
+      "band_low": 4340.18,
+      "band_high": 5413.56
+    },
+    {
+      "date": "2026-02-06",
+      "price": 4948.0,
+      "sigma_daily": 0.023839,
+      "grade": "매우 높음",
+      "band_low": 4448.92,
+      "band_high": 5503.07
+    },
+    {
+      "date": "2026-02-09",
+      "price": 5039.55,
+      "sigma_daily": 0.023289,
+      "grade": "매우 높음",
+      "band_low": 4542.36,
+      "band_high": 5591.16
+    },
+    {
+      "date": "2026-02-10",
+      "price": 5031.4,
+      "sigma_daily": 0.022724,
+      "grade": "매우 높음",
+      "band_low": 4546.47,
+      "band_high": 5568.06
+    },
+    {
+      "date": "2026-02-11",
+      "price": 5077.85,
+      "sigma_daily": 0.021941,
+      "grade": "매우 높음",
+      "band_low": 4604.49,
+      "band_high": 5599.88
+    },
+    {
+      "date": "2026-02-12",
+      "price": 5043.15,
+      "sigma_daily": 0.021275,
+      "grade": "매우 높음",
+      "band_low": 4586.62,
+      "band_high": 5545.12
+    },
+    {
+      "date": "2026-02-13",
+      "price": 4994.95,
+      "sigma_daily": 0.020652,
+      "grade": "매우 높음",
+      "band_low": 4555.44,
+      "band_high": 5476.87
+    },
+    {
+      "date": "2026-02-16",
+      "price": 4972.1,
+      "sigma_daily": 0.019983,
+      "grade": "매우 높음",
+      "band_low": 4548.14,
+      "band_high": 5435.58
+    },
+    {
+      "date": "2026-02-17",
+      "price": 4861.45,
+      "sigma_daily": 0.020217,
+      "grade": "매우 높음",
+      "band_low": 4442.29,
+      "band_high": 5320.16
+    },
+    {
+      "date": "2026-02-18",
+      "price": 5003.3,
+      "sigma_daily": 0.020682,
+      "grade": "매우 높음",
+      "band_low": 4562.44,
+      "band_high": 5486.76
+    },
+    {
+      "date": "2026-02-19",
+      "price": 5004.8,
+      "sigma_daily": 0.020803,
+      "grade": "매우 높음",
+      "band_low": 4561.34,
+      "band_high": 5491.37
+    },
+    {
+      "date": "2026-02-20",
+      "price": 5053.2,
+      "sigma_daily": 0.019936,
+      "grade": "매우 높음",
+      "band_low": 4623.3,
+      "band_high": 5523.08
+    },
+    {
+      "date": "2026-02-23",
+      "price": 5191.4,
+      "sigma_daily": 0.020175,
+      "grade": "매우 높음",
+      "band_low": 4744.68,
+      "band_high": 5680.18
+    },
+    {
+      "date": "2026-02-24",
+      "price": 5120.25,
+      "sigma_daily": 0.019901,
+      "grade": "매우 높음",
+      "band_low": 4685.36,
+      "band_high": 5595.5
+    },
+    {
+      "date": "2026-02-25",
+      "price": 5191.55,
+      "sigma_daily": 0.019375,
+      "grade": "매우 높음",
+      "band_low": 4761.78,
+      "band_high": 5660.11
+    },
+    {
+      "date": "2026-02-26",
+      "price": 5167.35,
+      "sigma_daily": 0.019187,
+      "grade": "매우 높음",
+      "band_low": 4743.55,
+      "band_high": 5629.02
+    },
+    {
+      "date": "2026-02-27",
+      "price": 5222.3,
+      "sigma_daily": 0.018506,
+      "grade": "매우 높음",
+      "band_low": 4808.59,
+      "band_high": 5671.61
+    },
+    {
+      "date": "2026-03-02",
+      "price": 5313.9,
+      "sigma_daily": 0.01814,
+      "grade": "매우 높음",
+      "band_low": 4900.91,
+      "band_high": 5761.69
+    },
+    {
+      "date": "2026-03-03",
+      "price": 5033.65,
+      "sigma_daily": 0.01986,
+      "grade": "매우 높음",
+      "band_low": 4606.96,
+      "band_high": 5499.86
+    },
+    {
+      "date": "2026-03-04",
+      "price": 5148.55,
+      "sigma_daily": 0.019435,
+      "grade": "매우 높음",
+      "band_low": 4721.06,
+      "band_high": 5614.75
+    },
+    {
+      "date": "2026-03-05",
+      "price": 5104.05,
+      "sigma_daily": 0.018783,
+      "grade": "매우 높음",
+      "band_low": 4693.89,
+      "band_high": 5550.05
+    },
+    {
+      "date": "2026-03-06",
+      "price": 5127.55,
+      "sigma_daily": 0.018393,
+      "grade": "매우 높음",
+      "band_low": 4723.72,
+      "band_high": 5565.91
+    },
+    {
+      "date": "2026-03-09",
+      "price": 5086.35,
+      "sigma_daily": 0.018424,
+      "grade": "매우 높음",
+      "band_low": 4685.11,
+      "band_high": 5521.95
+    },
+    {
+      "date": "2026-03-10",
+      "price": 5209.7,
+      "sigma_daily": 0.018039,
+      "grade": "높음",
+      "band_low": 4806.98,
+      "band_high": 5646.16
+    },
+    {
+      "date": "2026-03-11",
+      "price": 5182.4,
+      "sigma_daily": 0.017527,
+      "grade": "높음",
+      "band_low": 4792.71,
+      "band_high": 5603.77
+    },
+    {
+      "date": "2026-03-12",
+      "price": 5130.1,
+      "sigma_daily": 0.017204,
+      "grade": "높음",
+      "band_low": 4751.19,
+      "band_high": 5539.23
+    },
+    {
+      "date": "2026-03-13",
+      "price": 5044.6,
+      "sigma_daily": 0.017188,
+      "grade": "높음",
+      "band_low": 4672.34,
+      "band_high": 5446.52
+    },
+    {
+      "date": "2026-03-16",
+      "price": 4994.85,
+      "sigma_daily": 0.016978,
+      "grade": "높음",
+      "band_low": 4630.59,
+      "band_high": 5387.76
+    },
+    {
+      "date": "2026-03-17",
+      "price": 5016.8,
+      "sigma_daily": 0.016428,
+      "grade": "높음",
+      "band_low": 4662.37,
+      "band_high": 5398.17
+    },
+    {
+      "date": "2026-03-18",
+      "price": 4869.95,
+      "sigma_daily": 0.017304,
+      "grade": "높음",
+      "band_low": 4508.24,
+      "band_high": 5260.68
+    },
+    {
+      "date": "2026-03-19",
+      "price": 4600.35,
+      "sigma_daily": 0.020618,
+      "grade": "매우 높음",
+      "band_low": 4196.19,
+      "band_high": 5043.43
+    },
+    {
+      "date": "2026-03-20",
+      "price": 4562.55,
+      "sigma_daily": 0.02022,
+      "grade": "매우 높음",
+      "band_low": 4162.75,
+      "band_high": 5000.74
+    },
+    {
+      "date": "2026-03-23",
+      "price": 4466.25,
+      "sigma_daily": 0.020166,
+      "grade": "매우 높음",
+      "band_low": 4057.27,
+      "band_high": 4916.46
+    },
+    {
+      "date": "2026-03-24",
+      "price": 4413.55,
+      "sigma_daily": 0.019925,
+      "grade": "매우 높음",
+      "band_low": 4009.08,
+      "band_high": 4858.83
+    },
+    {
+      "date": "2026-03-25",
+      "price": 4564.55,
+      "sigma_daily": 0.020339,
+      "grade": "매우 높음",
+      "band_low": 4137.97,
+      "band_high": 5035.11
+    },
+    {
+      "date": "2026-03-26",
+      "price": 4456.45,
+      "sigma_daily": 0.020137,
+      "grade": "매우 높음",
+      "band_low": 4043.91,
+      "band_high": 4911.08
+    },
+    {
+      "date": "2026-03-27",
+      "price": 4504.15,
+      "sigma_daily": 0.019846,
+      "grade": "매우 높음",
+      "band_low": 4092.94,
+      "band_high": 4956.67
+    },
+    {
+      "date": "2026-03-30",
+      "price": 4529.15,
+      "sigma_daily": 0.019428,
+      "grade": "높음",
+      "band_low": 4123.97,
+      "band_high": 4974.14
+    },
+    {
+      "date": "2026-03-31",
+      "price": 4608.35,
+      "sigma_daily": 0.019199,
+      "grade": "높음",
+      "band_low": 4200.72,
+      "band_high": 5055.54
+    },
+    {
+      "date": "2026-04-01",
+      "price": 4739.0,
+      "sigma_daily": 0.019373,
+      "grade": "높음",
+      "band_low": 4316.19,
+      "band_high": 5203.22
+    },
+    {
+      "date": "2026-04-02",
+      "price": 4639.35,
+      "sigma_daily": 0.018819,
+      "grade": "높음",
+      "band_low": 4236.72,
+      "band_high": 5080.24
+    },
+    {
+      "date": "2026-04-07",
+      "price": 4611.7,
+      "sigma_daily": 0.018433,
+      "grade": "높음",
+      "band_low": 4219.32,
+      "band_high": 5040.56
+    },
+    {
+      "date": "2026-04-08",
+      "price": 4792.55,
+      "sigma_daily": 0.019594,
+      "grade": "높음",
+      "band_low": 4360.3,
+      "band_high": 5267.65
+    },
+    {
+      "date": "2026-04-09",
+      "price": 4762.6,
+      "sigma_daily": 0.019358,
+      "grade": "높음",
+      "band_low": 4338.0,
+      "band_high": 5228.76
+    },
+    {
+      "date": "2026-04-10",
+      "price": 4773.75,
+      "sigma_daily": 0.018905,
+      "grade": "높음",
+      "band_low": 4357.65,
+      "band_high": 5229.58
+    },
+    {
+      "date": "2026-04-13",
+      "price": 4722.65,
+      "sigma_daily": 0.018281,
+      "grade": "높음",
+      "band_low": 4324.02,
+      "band_high": 5158.03
+    },
+    {
+      "date": "2026-04-14",
+      "price": 4794.75,
+      "sigma_daily": 0.018147,
+      "grade": "높음",
+      "band_low": 4392.87,
+      "band_high": 5233.4
+    },
+    {
+      "date": "2026-04-15",
+      "price": 4823.25,
+      "sigma_daily": 0.017286,
+      "grade": "높음",
+      "band_low": 4437.37,
+      "band_high": 5242.69
+    },
+    {
+      "date": "2026-04-16",
+      "price": 4793.6,
+      "sigma_daily": 0.016916,
+      "grade": "높음",
+      "band_low": 4422.56,
+      "band_high": 5195.77
+    },
+    {
+      "date": "2026-04-17",
+      "price": 4870.5,
+      "sigma_daily": 0.016923,
+      "grade": "높음",
+      "band_low": 4511.32,
+      "band_high": 5258.27
+    },
+    {
+      "date": "2026-04-20",
+      "price": 4813.55,
+      "sigma_daily": 0.016805,
+      "grade": "높음",
+      "band_low": 4473.26,
+      "band_high": 5179.73
+    },
+    {
+      "date": "2026-04-21",
+      "price": 4776.75,
+      "sigma_daily": 0.016291,
+      "grade": "높음",
+      "band_low": 4461.43,
+      "band_high": 5114.35
+    },
+    {
+      "date": "2026-04-22",
+      "price": 4742.1,
+      "sigma_daily": 0.015218,
+      "grade": "높음",
+      "band_low": 4451.5,
+      "band_high": 5051.67
+    },
+    {
+      "date": "2026-04-23",
+      "price": 4719.15,
+      "sigma_daily": 0.014955,
+      "grade": "높음",
+      "band_low": 4438.66,
+      "band_high": 5017.36
+    },
+    {
+      "date": "2026-04-24",
+      "price": 4711.65,
+      "sigma_daily": 0.014403,
+      "grade": "높음",
+      "band_low": 4441.64,
+      "band_high": 4998.07
+    },
+    {
+      "date": "2026-04-27",
+      "price": 4692.25,
+      "sigma_daily": 0.013848,
+      "grade": "보통",
+      "band_low": 4433.43,
+      "band_high": 4966.18
+    },
+    {
+      "date": "2026-04-28",
+      "price": 4564.9,
+      "sigma_daily": 0.014694,
+      "grade": "높음",
+      "band_low": 4298.17,
+      "band_high": 4848.18
+    },
+    {
+      "date": "2026-04-29",
+      "price": 4522.1,
+      "sigma_daily": 0.014433,
+      "grade": "높음",
+      "band_low": 4262.44,
+      "band_high": 4797.58
+    },
+    {
+      "date": "2026-04-30",
+      "price": 4611.35,
+      "sigma_daily": 0.014683,
+      "grade": "높음",
+      "band_low": 4342.11,
+      "band_high": 4897.29
+    },
+    {
+      "date": "2026-05-01",
+      "price": 4613.84,
+      "sigma_daily": 0.014689,
+      "grade": "높음",
+      "band_low": 4344.35,
+      "band_high": 4900.04
+    },
+    {
+      "date": "2026-05-04",
+      "price": 4524.11,
+      "sigma_daily": 0.01466,
+      "grade": "높음",
+      "band_low": 4260.38,
+      "band_high": 4804.17
+    },
+    {
+      "date": "2026-05-05",
+      "price": 4557.53,
+      "sigma_daily": 0.014047,
+      "grade": "보통",
+      "band_low": 4302.64,
+      "band_high": 4827.53
+    },
+    {
+      "date": "2026-05-06",
+      "price": 4690.91,
+      "sigma_daily": 0.014859,
+      "grade": "높음",
+      "band_low": 4413.85,
+      "band_high": 4985.36
+    },
+    {
+      "date": "2026-05-07",
+      "price": 4687.18,
+      "sigma_daily": 0.014755,
+      "grade": "높음",
+      "band_low": 4412.21,
+      "band_high": 4979.28
+    },
+    {
+      "date": "2026-05-08",
+      "price": 4715.72,
+      "sigma_daily": 0.013739,
+      "grade": "보통",
+      "band_low": 4457.6,
+      "band_high": 4988.78
+    },
+    {
+      "date": "2026-05-11",
+      "price": 4735.45,
+      "sigma_daily": 0.013395,
+      "grade": "보통",
+      "band_low": 4482.57,
+      "band_high": 5002.61
+    },
+    {
+      "date": "2026-05-12",
+      "price": 4715.49,
+      "sigma_daily": 0.013148,
+      "grade": "보통",
+      "band_low": 4468.19,
+      "band_high": 4976.48
+    },
+    {
+      "date": "2026-05-13",
+      "price": 4689.14,
+      "sigma_daily": 0.012293,
+      "grade": "보통",
+      "band_low": 4458.8,
+      "band_high": 4931.38
+    },
+    {
+      "date": "2026-05-14",
+      "price": 4652.27,
+      "sigma_daily": 0.012152,
+      "grade": "보통",
+      "band_low": 4426.31,
+      "band_high": 4889.77
+    },
+    {
+      "date": "2026-05-15",
+      "price": 4540.65,
+      "sigma_daily": 0.01321,
+      "grade": "보통",
+      "band_low": 4301.42,
+      "band_high": 4793.18
+    },
+    {
+      "date": "2026-05-18",
+      "price": 4566.16,
+      "sigma_daily": 0.013094,
+      "grade": "보통",
+      "band_low": 4327.64,
+      "band_high": 4817.82
+    },
+    {
+      "date": "2026-05-19",
+      "price": 4482.11,
+      "sigma_daily": 0.01333,
+      "grade": "보통",
+      "band_low": 4243.89,
+      "band_high": 4733.71
+    },
+    {
+      "date": "2026-05-20",
+      "price": 4543.7,
+      "sigma_daily": 0.013365,
+      "grade": "보통",
+      "band_low": 4301.59,
+      "band_high": 4799.45
+    },
+    {
+      "date": "2026-05-21",
+      "price": 4543.43,
+      "sigma_daily": 0.013441,
+      "grade": "보통",
+      "band_low": 4299.98,
+      "band_high": 4800.65
+    },
+    {
+      "date": "2026-05-22",
+      "price": 4509.69,
+      "sigma_daily": 0.012766,
+      "grade": "보통",
+      "band_low": 4279.87,
+      "band_high": 4751.85
+    },
+    {
+      "date": "2026-05-25",
+      "price": 4570.31,
+      "sigma_daily": 0.012829,
+      "grade": "보통",
+      "band_low": 4336.29,
+      "band_high": 4816.97
+    },
+    {
+      "date": "2026-05-26",
+      "price": 4570.31,
+      "sigma_daily": 0.012813,
+      "grade": "보통",
+      "band_low": 4336.57,
+      "band_high": 4816.65
+    },
+    {
+      "date": "2026-05-27",
+      "price": 4456.12,
+      "sigma_daily": 0.013424,
+      "grade": "보통",
+      "band_low": 4217.65,
+      "band_high": 4708.07
+    },
+    {
+      "date": "2026-05-28",
+      "price": 4495.82,
+      "sigma_daily": 0.013092,
+      "grade": "보통",
+      "band_low": 4261.02,
+      "band_high": 4743.57
+    },
+    {
+      "date": "2026-05-29",
+      "price": 4540.53,
+      "sigma_daily": 0.012973,
+      "grade": "보통",
+      "band_low": 4305.49,
+      "band_high": 4788.4
+    },
+    {
+      "date": "2026-06-01",
+      "price": 4484.73,
+      "sigma_daily": 0.012809,
+      "grade": "보통",
+      "band_low": 4255.43,
+      "band_high": 4726.38
+    },
+    {
+      "date": "2026-06-02",
+      "price": 4487.95,
+      "sigma_daily": 0.012806,
+      "grade": "보통",
+      "band_low": 4258.55,
+      "band_high": 4729.72
+    },
+    {
+      "date": "2026-06-03",
+      "price": 4434.72,
+      "sigma_daily": 0.012227,
+      "grade": "보통",
+      "band_low": 4218.02,
+      "band_high": 4662.54
+    },
+    {
+      "date": "2026-06-04",
+      "price": 4475.29,
+      "sigma_daily": 0.012142,
+      "grade": "보통",
+      "band_low": 4258.1,
+      "band_high": 4703.56
+    },
+    {
+      "date": "2026-06-05",
+      "price": 4327.89,
+      "sigma_daily": 0.013671,
+      "grade": "높음",
+      "band_low": 4092.14,
+      "band_high": 4577.21
+    },
+    {
+      "date": "2026-06-08",
+      "price": 4330.06,
+      "sigma_daily": 0.013807,
+      "grade": "높음",
+      "band_low": 4091.91,
+      "band_high": 4582.09
+    },
+    {
+      "date": "2026-06-09",
+      "price": 4259.97,
+      "sigma_daily": 0.013771,
+      "grade": "높음",
+      "band_low": 4026.26,
+      "band_high": 4507.24
+    },
+    {
+      "date": "2026-06-10",
+      "price": 4072.01,
+      "sigma_daily": 0.016526,
+      "grade": "높음",
+      "band_low": 3801.75,
+      "band_high": 4361.49
+    },
+    {
+      "date": "2026-06-11",
+      "price": 4211.19,
+      "sigma_daily": 0.017648,
+      "grade": "높음",
+      "band_low": 3910.89,
+      "band_high": 4534.56
+    },
+    {
+      "date": "2026-06-12",
+      "price": 4218.56,
+      "sigma_daily": 0.017467,
+      "grade": "높음",
+      "band_low": 3920.7,
+      "band_high": 4539.05
+    },
+    {
+      "date": "2026-06-15",
+      "price": 4308.85,
+      "sigma_daily": 0.017437,
+      "grade": "높음",
+      "band_low": 4005.12,
+      "band_high": 4635.61
+    },
+    {
+      "date": "2026-06-16",
+      "price": 4331.28,
+      "sigma_daily": 0.017056,
+      "grade": "높음",
+      "band_low": 4032.41,
+      "band_high": 4652.31
+    },
+    {
+      "date": "2026-06-17",
+      "price": 4257.65,
+      "sigma_daily": 0.016732,
+      "grade": "높음",
+      "band_low": 3969.25,
+      "band_high": 4567.01
+    },
+    {
+      "date": "2026-06-18",
+      "price": 4208.99,
+      "sigma_daily": 0.016242,
+      "grade": "높음",
+      "band_low": 3931.96,
+      "band_high": 4505.55
+    },
+    {
+      "date": "2026-06-19",
+      "price": 4155.4,
+      "sigma_daily": 0.016133,
+      "grade": "높음",
+      "band_low": 3883.68,
+      "band_high": 4446.15
+    },
+    {
+      "date": "2026-06-22",
+      "price": 4155.4,
+      "sigma_daily": 0.016085,
+      "grade": "높음",
+      "band_low": 3884.45,
+      "band_high": 4445.26
+    },
+    {
+      "date": "2026-06-23",
+      "price": 4110.74,
+      "sigma_daily": 0.015549,
+      "grade": "높음",
+      "band_low": 3851.35,
+      "band_high": 4387.61
+    },
+    {
+      "date": "2026-06-24",
+      "price": 3999.5,
+      "sigma_daily": 0.016261,
+      "grade": "높음",
+      "band_low": 3735.96,
+      "band_high": 4281.63
+    },
+    {
+      "date": "2026-06-25",
+      "price": 4026.92,
+      "sigma_daily": 0.016119,
+      "grade": "높음",
+      "band_low": 3763.81,
+      "band_high": 4308.42
+    },
+    {
+      "date": "2026-06-26",
+      "price": 4088.39,
+      "sigma_daily": 0.015858,
+      "grade": "높음",
+      "band_low": 3825.44,
+      "band_high": 4369.4
+    },
+    {
+      "date": "2026-06-29",
+      "price": 4016.95,
+      "sigma_daily": 0.016029,
+      "grade": "높음",
+      "band_low": 3755.92,
+      "band_high": 4296.14
+    },
+    {
+      "date": "2026-06-30",
+      "price": 4007.53,
+      "sigma_daily": 0.015894,
+      "grade": "높음",
+      "band_low": 3749.21,
+      "band_high": 4283.64
+    },
+    {
+      "date": "2026-07-01",
+      "price": 4031.7,
+      "sigma_daily": 0.015238,
+      "grade": "높음",
+      "band_low": 3782.23,
+      "band_high": 4297.64
+    },
+    {
+      "date": "2026-07-02",
+      "price": 4123.6,
+      "sigma_daily": 0.015692,
+      "grade": "높음",
+      "band_low": 3861.08,
+      "band_high": 4403.98
+    },
+    {
+      "date": "2026-07-03",
+      "price": 4175.69,
+      "sigma_daily": 0.015604,
+      "grade": "높음",
+      "band_low": 3911.29,
+      "band_high": 4457.97
+    },
+    {
+      "date": "2026-07-06",
+      "price": 4175.69,
+      "sigma_daily": 0.015676,
+      "grade": "높음",
+      "band_low": 3910.12,
+      "band_high": 4459.31
+    },
+    {
+      "date": "2026-07-07",
+      "price": 4106.12,
+      "sigma_daily": 0.015059,
+      "grade": "높음",
+      "band_low": 3854.93,
+      "band_high": 4373.68
+    },
+    {
+      "date": "2026-07-08",
+      "price": 4077.12,
+      "sigma_daily": 0.014971,
+      "grade": "높음",
+      "band_low": 3829.11,
+      "band_high": 4341.2
+    },
+    {
+      "date": "2026-07-09",
+      "price": 4123.79,
+      "sigma_daily": 0.014583,
+      "grade": "보통",
+      "band_low": 3879.24,
+      "band_high": 4383.76
+    },
+    {
+      "date": "2026-07-10",
+      "price": 4120.67,
+      "sigma_daily": 0.013725,
+      "grade": "보통",
+      "band_low": 3890.27,
+      "band_high": 4364.71
+    },
+    {
+      "date": "2026-07-13",
+      "price": 4001.18,
+      "sigma_daily": 0.01437,
+      "grade": "보통",
+      "band_low": 3767.27,
+      "band_high": 4249.62
+    },
+    {
+      "date": "2026-07-14",
+      "price": 4052.78,
+      "sigma_daily": 0.014362,
+      "grade": "보통",
+      "band_low": 3815.98,
+      "band_high": 4304.27
+    },
+    {
+      "date": "2026-07-15",
+      "price": 4060.7,
+      "sigma_daily": 0.014046,
+      "grade": "보통",
+      "band_low": 3828.5,
+      "band_high": 4306.97
+    },
+    {
+      "date": "2026-07-16",
+      "price": 3976.58,
+      "sigma_daily": 0.014337,
+      "grade": "보통",
+      "band_low": 3744.62,
+      "band_high": 4222.9
+    },
+    {
+      "date": "2026-07-17",
+      "price": 4017.32,
+      "sigma_daily": 0.014176,
+      "grade": "보통",
+      "band_low": 3785.54,
+      "band_high": 4263.28
+    },
+    {
+      "date": "2026-07-20",
+      "price": 4007.59,
+      "sigma_daily": 0.013737,
+      "grade": "보통",
+      "band_low": 3783.33,
+      "band_high": 4245.13
+    },
+    {
+      "date": "2026-07-21",
+      "price": 4077.32,
+      "sigma_daily": 0.013759,
+      "grade": "보통",
+      "band_low": 3848.81,
+      "band_high": 4319.41
+    },
+    {
+      "date": "2026-07-22",
+      "price": 4129.76,
+      "sigma_daily": 0.013827,
+      "grade": "보통",
+      "band_low": 3897.2,
+      "band_high": 4376.2
+    },
+    {
+      "date": "2026-07-23",
+      "price": 4049.78,
+      "sigma_daily": 0.014066,
+      "grade": "보통",
+      "band_low": 3817.89,
+      "band_high": 4295.75
+    },
+    {
+      "date": "2026-07-24",
+      "price": 4052.84,
+      "sigma_daily": 0.013712,
+      "grade": "보통",
+      "band_low": 3826.45,
+      "band_high": 4292.63
+    },
+    {
+      "date": "2026-07-27",
+      "price": 4076.43,
+      "sigma_daily": 0.013357,
+      "grade": "보통",
+      "band_low": 3854.44,
+      "band_high": 4311.19
+    },
+    {
+      "date": "2026-07-28",
+      "price": 4028.67,
+      "sigma_daily": 0.013138,
+      "grade": "보통",
+      "band_low": 3812.8,
+      "band_high": 4256.76
+    },
+    {
+      "date": "2026-07-29",
+      "price": 4066.34,
+      "sigma_daily": 0.012882,
+      "grade": "보통",
+      "band_low": 3852.58,
+      "band_high": 4291.96
+    },
+    {
+      "date": "2026-07-30",
+      "price": 4103.27,
+      "sigma_daily": 0.012599,
+      "grade": "보통",
+      "band_low": 3892.18,
+      "band_high": 4325.81
+    },
+    {
+      "date": "2026-07-31",
+      "price": 4045.16,
+      "sigma_daily": 0.012815,
+      "grade": "보통",
+      "band_low": 3833.59,
+      "band_high": 4268.42
+    },
+    {
+      "date": "2026-08-03",
+      "price": 4055.33,
+      "sigma_daily": 0.012481,
+      "grade": "보통",
+      "band_low": 3848.6,
+      "band_high": 4273.16
+    },
+    {
+      "date": "2026-08-04",
+      "price": 4077.05,
+      "sigma_daily": 0.012116,
+      "grade": "보통",
+      "band_low": 3875.15,
+      "band_high": 4289.48
+    },
+    {
+      "date": "2026-08-05",
+      "price": 4247.27,
+      "sigma_daily": 0.014797,
+      "grade": "높음",
+      "band_low": 3991.83,
+      "band_high": 4519.06
+    },
+    {
+      "date": "2026-08-06",
+      "price": 4240.75,
+      "sigma_daily": 0.014681,
+      "grade": "보통",
+      "band_low": 3987.64,
+      "band_high": 4509.93
+    },
+    {
+      "date": "2026-08-07",
+      "price": 4341.94,
+      "sigma_daily": 0.014997,
+      "grade": "높음",
+      "band_low": 4066.92,
+      "band_high": 4635.54
+    },
+    {
+      "date": "2026-08-10",
+      "price": 4390.23,
+      "sigma_daily": 0.014926,
+      "grade": "높음",
+      "band_low": 4103.41,
+      "band_high": 4697.11
+    },
+    {
+      "date": "2026-08-11",
+      "price": 4368.24,
+      "sigma_daily": 0.01478,
+      "grade": "보통",
+      "band_low": 4069.1,
+      "band_high": 4689.38
+    },
+    {
+      "date": "2026-08-12",
+      "price": 4408.52,
+      "sigma_daily": 0.013858,
+      "grade": "보통",
+      "band_low": 4124.85,
+      "band_high": 4711.71
+    },
+    {
+      "date": "2026-08-13",
+      "price": 4351.27,
+      "sigma_daily": 0.013842,
+      "grade": "보통",
+      "band_low": 4071.58,
+      "band_high": 4650.17
+    },
+    {
+      "date": "2026-08-14",
+      "price": 4376.82,
+      "sigma_daily": 0.013459,
+      "grade": "보통",
+      "band_low": 4103.02,
+      "band_high": 4668.89
+    },
+    {
+      "date": "2026-08-17",
+      "price": 4416.68,
+      "sigma_daily": 0.013098,
+      "grade": "보통",
+      "band_low": 4147.57,
+      "band_high": 4703.25
+    },
+    {
+      "date": "2026-08-18",
+      "price": 4334.57,
+      "sigma_daily": 0.013511,
+      "grade": "보통",
+      "band_low": 4062.41,
+      "band_high": 4624.97
+    },
+    {
+      "date": "2026-08-19",
+      "price": 4523.05,
+      "sigma_daily": 0.01607,
+      "grade": "높음",
+      "band_low": 4187.31,
+      "band_high": 4885.71
+    },
+    {
+      "date": "2026-08-20",
+      "price": 4518.95,
+      "sigma_daily": 0.015985,
+      "grade": "높음",
+      "band_low": 4185.22,
+      "band_high": 4879.3
+    },
+    {
+      "date": "2026-08-21",
+      "price": 4602.99,
+      "sigma_daily": 0.015843,
+      "grade": "높음",
+      "band_low": 4265.97,
+      "band_high": 4966.64
+    },
+    {
+      "date": "2026-08-24",
+      "price": 4651.24,
+      "sigma_daily": 0.015607,
+      "grade": "높음",
+      "band_low": 4315.55,
+      "band_high": 5013.04
+    },
+    {
+      "date": "2026-08-25",
+      "price": 4659.06,
+      "sigma_daily": 0.01545,
+      "grade": "높음",
+      "band_low": 4313.27,
+      "band_high": 5032.56
+    },
+    {
+      "date": "2026-08-26",
+      "price": 4594.73,
+      "sigma_daily": 0.014804,
+      "grade": "보통",
+      "band_low": 4267.46,
+      "band_high": 4947.09
+    },
+    {
+      "date": "2026-08-27",
+      "price": 4602.15,
+      "sigma_daily": 0.01468,
+      "grade": "보통",
+      "band_low": 4276.99,
+      "band_high": 4952.02
+    },
+    {
+      "date": "2026-08-28",
+      "price": 4454.99,
+      "sigma_daily": 0.01581,
+      "grade": "높음",
+      "band_low": 4129.44,
+      "band_high": 4806.2
+    },
+    {
+      "date": "2026-08-31",
+      "price": 4449.24,
+      "sigma_daily": 0.01577,
+      "grade": "높음",
+      "band_low": 4142.7,
+      "band_high": 4778.46
+    },
+    {
+      "date": "2026-09-01",
+      "price": 4328.4,
+      "sigma_daily": 0.016295,
+      "grade": "높음",
+      "band_low": 4020.63,
+      "band_high": 4659.74
+    },
+    {
+      "date": "2026-09-02",
+      "price": 4388.22,
+      "sigma_daily": 0.01629,
+      "grade": "높음",
+      "band_low": 4087.16,
+      "band_high": 4711.46
+    },
+    {
+      "date": "2026-09-03",
+      "price": 4472.97,
+      "sigma_daily": 0.016774,
+      "grade": "높음",
+      "band_low": 4169.24,
+      "band_high": 4798.82
+    },
+    {
+      "date": "2026-09-04",
+      "price": 4429.82,
+      "sigma_daily": 0.015904,
+      "grade": "높음",
+      "band_low": 4146.52,
+      "band_high": 4732.49
+    },
+    {
+      "date": "2026-09-07",
+      "price": 4406.06,
+      "sigma_daily": 0.015738,
+      "grade": "높음",
+      "band_low": 4130.92,
+      "band_high": 4699.54
+    },
+    {
+      "date": "2026-09-08",
+      "price": 4355.7,
+      "sigma_daily": 0.015172,
+      "grade": "보통",
+      "band_low": 4093.18,
+      "band_high": 4635.07
+    },
+    {
+      "date": "2026-09-09",
+      "price": 4402.11,
+      "sigma_daily": 0.014984,
+      "grade": "보통",
+      "band_low": 4139.99,
+      "band_high": 4680.84
+    },
+    {
+      "date": "2026-09-10",
+      "price": 4317.02,
+      "sigma_daily": 0.015198,
+      "grade": "보통",
+      "band_low": 4056.4,
+      "band_high": 4594.4
+    },
+    {
+      "date": "2026-09-11",
+      "price": 4349.42,
+      "sigma_daily": 0.015052,
+      "grade": "보통",
+      "band_low": 4089.29,
+      "band_high": 4626.1
+    },
+    {
+      "date": "2026-09-14",
+      "price": 4299.52,
+      "sigma_daily": 0.014941,
+      "grade": "보통",
+      "band_low": 4044.21,
+      "band_high": 4570.95
+    },
+    {
+      "date": "2026-09-15",
+      "price": 4293.89,
+      "sigma_daily": 0.014837,
+      "grade": "보통",
+      "band_low": 4040.64,
+      "band_high": 4563.0
+    },
+    {
+      "date": "2026-09-16",
+      "price": 4263.85,
+      "sigma_daily": 0.014459,
+      "grade": "보통",
+      "band_low": 4018.6,
+      "band_high": 4524.08
+    },
+    {
+      "date": "2026-09-17",
+      "price": 4341.84,
+      "sigma_daily": 0.014426,
+      "grade": "보통",
+      "band_low": 4092.64,
+      "band_high": 4606.21
+    },
+    {
+      "date": "2026-09-18",
+      "price": 4378.39,
+      "sigma_daily": 0.013628,
+      "grade": "보통",
+      "band_low": 4140.61,
+      "band_high": 4629.82
+    },
+    {
+      "date": "2026-09-21",
+      "price": 4343.55,
+      "sigma_daily": 0.013471,
+      "grade": "보통",
+      "band_low": 4110.31,
+      "band_high": 4590.01
+    },
+    {
+      "date": "2026-09-22",
+      "price": 4358.54,
+      "sigma_daily": 0.013184,
+      "grade": "보통",
+      "band_low": 4129.35,
+      "band_high": 4600.45
+    },
+    {
+      "date": "2026-09-23",
+      "price": 4287.41,
+      "sigma_daily": 0.013348,
+      "grade": "보통",
+      "band_low": 4059.23,
+      "band_high": 4528.41
+    },
+    {
+      "date": "2026-09-24",
+      "price": 4273.8,
+      "sigma_daily": 0.013111,
+      "grade": "낮음",
+      "band_low": 4050.27,
+      "band_high": 4509.67
+    }
+  ],
+  "evaluation": {
+    "model_name": "HAR+GARCH 평균",
+    "period_start": "2024-01-02",
+    "period_end": "2026-09-17",
+    "n_days": 686,
+    "coverage_target": 0.9,
+    "hit_rate": 0.8950437317784257,
+    "avg_width": 0.04663990282292405,
+    "hit_rate_nonoverlap": 0.8985507246376812,
+    "n_nonoverlap": 138,
+    "z_default_days": 0,
+    "qlike_improvement": 0.07929639461390603,
+    "fallback_days": 0,
+    "baseline": {
+      "name": "최근 1년 변동성",
+      "hit_rate": 0.8848396501457726,
+      "avg_width": 0.04479093699320134,
+      "hit_rate_nonoverlap": 0.8985507246376812,
+      "n_nonoverlap": 138,
+      "z_default_days": 0
+    }
+  },
+  "split_rule": {
+    "낮음": [
+      0
+    ],
+    "보통": [
+      0,
+      3
+    ],
+    "높음": [
+      0,
+      2,
+      4
+    ],
+    "매우 높음": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  }
+}
