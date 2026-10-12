@@ -1,0 +1,8 @@
+# Netlify 정적 배포: web/ 을 빌드해 web/dist 를 올린다
+[build]
+  base = "web"
+  command = "npm ci && npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"

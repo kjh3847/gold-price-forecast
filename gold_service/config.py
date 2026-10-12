@@ -29,6 +29,6 @@ class Settings:
             price_csv_date_col=os.getenv("PRICE_CSV_DATE_COL", "date"),
             price_csv_close_col=os.getenv("PRICE_CSV_CLOSE_COL", "gold"),
             holidays_file=Path(holidays) if holidays else None,
-            backfill_days=int(os.getenv("BACKFILL_DAYS", "400")),
+            backfill_days=int(os.getenv("BACKFILL_DAYS", "520")),
             log_level=os.getenv("LOG_LEVEL", "INFO"),
         )

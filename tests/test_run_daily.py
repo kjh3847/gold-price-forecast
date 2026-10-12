@@ -82,3 +82,24 @@ def test_exit_codes(settings, monkeypatch):
     assert run_daily.main(["--date", "not-a-date"]) == 2
     monkeypatch.setattr(Settings, "from_env", classmethod(lambda cls: replace(settings, price_csv_path=DATA_CSV.with_name("x.csv"))))
     assert run_daily.main(["--date", "2026-09-21"]) == 1
+
+
+def test_band_is_saved(settings):
+    run_daily.run(MONDAY, settings)
+    with Session(db.make_engine(settings.database_url)) as session:
+        rows = session.scalars(select(db.ForecastRow).order_by(db.ForecastRow.date)).all()
+        assert all(r.band_low < r.band_high for r in rows)
+        # 오차 표본 120개는 백필 125번째 날부터 쌓인다 (i ≤ t−5)
+        assert all(r.z_is_default for r in rows[:124]) and not any(r.z_is_default for r in rows[124:])
+        assert rows[-1].date == MONDAY
+
+
+def test_init_db_adds_columns_to_old_db(tmp_path):
+    from sqlalchemy import inspect, text
+
+    engine = db.make_engine(f"sqlite:///{tmp_path / 'old.db'}")
+    with engine.begin() as conn:  # z·band 컬럼이 없던 예전 스키마
+        conn.execute(text("CREATE TABLE forecasts (date DATE PRIMARY KEY, sigma FLOAT NOT NULL, is_fallback BOOLEAN NOT NULL)"))
+    db.init_db(engine)
+    cols = {c["name"] for c in inspect(engine).get_columns("forecasts")}
+    assert {"z", "band_low", "band_high", "z_is_default"} <= cols

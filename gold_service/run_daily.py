@@ -2,7 +2,7 @@
 
     python -m gold_service.run_daily --date YYYY-MM-DD
 
-수집 → 예측(필요 시 재학습, 누락일 백필) → 등급 → 저장 →
+수집 → 예측(필요 시 재학습, 누락일 백필) → 등급 → 5일 가격 범위 → 저장 →
 (주 첫 거래일이면) 주간 플랜 생성 + 모니터링.
 같은 날짜로 다시 실행해도 결과가 중복되지 않는다.
 
@@ -20,6 +20,7 @@ import pandas as pd
 from sqlalchemy.orm import Session
 
 from gold_service import db
+from gold_service.bands import compute_bands
 from gold_service.config import Settings
 from gold_service.features import forward_variance, log_returns, realized_vol
 from gold_service.grading import Grade, grade_from_percentile, percentile_of_last
@@ -86,6 +87,16 @@ def grade(session: Session, dates: list[date], end: date) -> None:
     for d in sorted(dates):
         pct = percentile_of_last(sigma.loc[: pd.Timestamp(d)].to_numpy())
         db.save_grade(session, d, pct, grade_from_percentile(pct))
+    session.flush()
+
+
+def bands(session: Session, close: pd.Series, dates: list[date], end: date) -> None:
+    """5일 90% 가격 범위. z_t는 결과가 확정된 i ≤ t−5 오차만 쓴다 (close가 end에서 끝남)."""
+    table = compute_bands(close, db.load_forecasts(session, end)["sigma"])
+    for d in dates:
+        row = table.loc[pd.Timestamp(d)]
+        db.save_band(session, d, float(row["z"]), float(row["band_low"]), float(row["band_high"]),
+                     bool(row["z_is_default"]))
     session.flush()
 
 
@@ -175,6 +186,7 @@ def run(
 
         r, forecasts, new_params = forecast(session, close, settings.backfill_days)
         grade(session, [f.date for f in forecasts], target)
+        bands(session, close, [f.date for f in forecasts], target)
         today = db.load_forecasts(session, target).iloc[-1]
         result = RunResult(
             target,
@@ -186,8 +198,9 @@ def run(
             is_fallback=bool(today["is_fallback"]),
         )
         log.info(
-            "%s 예측: σ=%.4f (하루 ±%.2f%%), 등급=%s, 대체값=%s",
+            "%s 예측: σ=%.4f (하루 ±%.2f%%), 등급=%s, 대체값=%s, 5일 90%% 범위 %.2f ~ %.2f (z=%.3f)",
             target, result.sigma, result.sigma * 100, result.grade, result.is_fallback,
+            today["band_low"], today["band_high"], today["z"],
         )
 
         if is_first_trading_day_of_week(close, target):

@@ -21,7 +21,9 @@ from sqlalchemy import (
     Text,
     UniqueConstraint,
     create_engine,
+    inspect,
     select,
+    text,
 )
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, Session, mapped_column, relationship
@@ -72,6 +74,10 @@ class ForecastRow(Base):
     har_var: Mapped[float | None] = mapped_column(Float)
     garch_var: Mapped[float | None] = mapped_column(Float)
     rv22: Mapped[float | None] = mapped_column(Float)
+    z: Mapped[float | None] = mapped_column(Float)  # 5일 90% 범위 배수
+    band_low: Mapped[float | None] = mapped_column(Float)
+    band_high: Mapped[float | None] = mapped_column(Float)
+    z_is_default: Mapped[bool | None] = mapped_column(Boolean)  # 표본 부족으로 z=1.645 사용
     params_trained_on: Mapped[date | None] = mapped_column(Date)
     error: Mapped[str | None] = mapped_column(Text)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now, onupdate=_now)
@@ -144,6 +150,16 @@ class MonitoringRow(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now)
 
 
+class EvaluationRow(Base):
+    """walk-forward 평가 결과 (python -m gold_service.evaluate)."""
+
+    __tablename__ = "evaluations"
+    period_start: Mapped[date] = mapped_column(Date, primary_key=True)
+    period_end: Mapped[date] = mapped_column(Date, nullable=False)
+    metrics: Mapped[dict] = mapped_column(JSON, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now, onupdate=_now)
+
+
 # ---------------------------------------------------------------- 연결
 def make_engine(url: str) -> Engine:
     return create_engine(url, future=True)
@@ -151,6 +167,18 @@ def make_engine(url: str) -> Engine:
 
 def init_db(engine: Engine) -> None:
     Base.metadata.create_all(engine)
+    _add_missing_columns(engine)
+
+
+def _add_missing_columns(engine: Engine) -> None:
+    """기존 DB에 나중에 추가된 nullable 컬럼을 붙인다 (간단한 마이그레이션)."""
+    insp = inspect(engine)
+    with engine.begin() as conn:
+        for table in Base.metadata.sorted_tables:
+            existing = {c["name"] for c in insp.get_columns(table.name)}
+            for col in table.columns:
+                if col.name not in existing and col.nullable:
+                    conn.execute(text(f'ALTER TABLE {table.name} ADD COLUMN {col.name} {col.type.compile(engine.dialect)}'))
 
 
 # ---------------------------------------------------------------- prices
@@ -224,6 +252,14 @@ def save_grade(session: Session, d: date, percentile: float | None, grade: Grade
     row.grade = grade.value if grade else None
 
 
+def save_band(session: Session, d: date, z: float, band_low: float, band_high: float, z_is_default: bool) -> None:
+    row = session.get(ForecastRow, d)
+    row.z = z
+    row.band_low = band_low
+    row.band_high = band_high
+    row.z_is_default = z_is_default
+
+
 def forecast_dates(session: Session, end: date) -> set[date]:
     return set(session.scalars(select(ForecastRow.date).where(ForecastRow.date <= end)))
 
@@ -233,10 +269,12 @@ def load_forecasts(session: Session, end: date) -> pd.DataFrame:
     df = pd.DataFrame(
         [
             {"date": pd.Timestamp(r.date), "sigma": r.sigma, "grade": r.grade, "percentile": r.percentile,
-             "is_fallback": r.is_fallback, "rv22": r.rv22}
+             "is_fallback": r.is_fallback, "rv22": r.rv22, "z": r.z, "band_low": r.band_low,
+             "band_high": r.band_high, "z_is_default": r.z_is_default}
             for r in rows
         ],
-        columns=["date", "sigma", "grade", "percentile", "is_fallback", "rv22"],
+        columns=["date", "sigma", "grade", "percentile", "is_fallback", "rv22", "z", "band_low", "band_high",
+                 "z_is_default"],
     )
     return df.set_index("date")
 
@@ -296,3 +334,16 @@ def previous_improvements(session: Session, before: date) -> list[float | None]:
     return list(
         session.scalars(select(MonitoringRow.improvement).where(MonitoringRow.date < before).order_by(MonitoringRow.date))
     )
+
+
+# ---------------------------------------------------------------- evaluations
+def save_evaluation(session: Session, period_start: date, period_end: date, metrics: dict) -> None:
+    row = session.get(EvaluationRow, period_start) or EvaluationRow(period_start=period_start)
+    row.period_end = period_end
+    row.metrics = metrics
+    session.add(row)
+
+
+def latest_evaluation(session: Session) -> dict | None:
+    row = session.scalar(select(EvaluationRow).order_by(EvaluationRow.created_at.desc()))
+    return dict(row.metrics) if row else None
