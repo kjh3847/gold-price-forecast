@@ -249,3 +249,8 @@ Thumbs.db
 .parcel-cache/
 .eslintcache
 coverage/
+!.env.example
+
+# 금 분할매수 도우미: 로컬 SQLite DB
+*.db
+*.sqlite3

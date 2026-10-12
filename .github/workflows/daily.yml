@@ -1,0 +1,40 @@
+# 매 거래일 장 마감 후 일간 배치 실행 (예시)
+# KRX 금시장 마감 15:30 KST → 16:30 KST(= 07:30 UTC) 월~금 실행.
+# 공휴일엔 run_daily가 HOLIDAYS_FILE을 보고 스스로 건너뛴다(종료 코드 0).
+name: daily-batch
+
+on:
+  schedule:
+    - cron: "30 7 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "기준일 YYYY-MM-DD (비우면 오늘, KST)"
+        required: false
+
+concurrency:
+  group: daily-batch
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      PRICE_SOURCE: csv
+      PRICE_CSV_PATH: data/gold_only_ready.csv
+      # HOLIDAYS_FILE: data/krx_holidays.csv
+      LOG_LEVEL: INFO
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install ".[postgres]"
+      - name: Run daily batch
+        run: |
+          TARGET="${{ github.event.inputs.date }}"
+          if [ -z "$TARGET" ]; then TARGET="$(TZ=Asia/Seoul date +%F)"; fi
+          python -m gold_service.run_daily --date "$TARGET"
