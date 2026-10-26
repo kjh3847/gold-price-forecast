@@ -6,7 +6,7 @@ export interface LoadedForecast {
 }
 
 const base = import.meta.env.BASE_URL;
-export const FORECAST_URL = `${base}data/forecast.json`;
+export const FORECAST_URL = "/api/forecast/full";
 export const SAMPLE_URL = `${base}data/forecast.sample.json`;
 
 /** 화면이 깨지지 않을 최소한의 구조 검사. */
