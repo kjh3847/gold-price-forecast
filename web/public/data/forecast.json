@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-12T08:35:01+00:00",
+  "generated_at": "2026-10-26T07:19:44+00:00",
   "as_of": "2026-09-24",
   "currency": "USD",
   "unit": "oz",
@@ -1036,7 +1036,7 @@
     {
       "date": "2026-03-20",
       "price": 4562.55,
-      "sigma_daily": 0.02022,
+      "sigma_daily": 0.020219,
       "grade": "매우 높음",
       "band_low": 4162.75,
       "band_high": 5000.74
@@ -1582,7 +1582,7 @@
       "price": 4088.39,
       "sigma_daily": 0.015858,
       "grade": "높음",
-      "band_low": 3825.44,
+      "band_low": 3825.45,
       "band_high": 4369.4
     },
     {
@@ -1972,7 +1972,7 @@
     {
       "date": "2026-09-03",
       "price": 4472.97,
-      "sigma_daily": 0.016774,
+      "sigma_daily": 0.016775,
       "grade": "높음",
       "band_low": 4169.24,
       "band_high": 4798.82
@@ -2101,22 +2101,22 @@
   "evaluation": {
     "model_name": "HAR+GARCH 평균",
     "period_start": "2024-01-02",
-    "period_end": "2026-09-17",
-    "n_days": 686,
+    "period_end": "2026-09-10",
+    "n_days": 681,
     "coverage_target": 0.9,
-    "hit_rate": 0.8950437317784257,
-    "avg_width": 0.04663990282292405,
-    "hit_rate_nonoverlap": 0.8985507246376812,
-    "n_nonoverlap": 138,
+    "hit_rate": 0.8942731277533039,
+    "avg_width": 0.0465442816174396,
+    "hit_rate_nonoverlap": 0.8978102189781022,
+    "n_nonoverlap": 137,
     "z_default_days": 0,
-    "qlike_improvement": 0.07929639461390603,
+    "qlike_improvement": 0.07731043751156097,
     "fallback_days": 0,
     "baseline": {
       "name": "최근 1년 변동성",
-      "hit_rate": 0.8848396501457726,
-      "avg_width": 0.04479093699320134,
-      "hit_rate_nonoverlap": 0.8985507246376812,
-      "n_nonoverlap": 138,
+      "hit_rate": 0.8839941262848752,
+      "avg_width": 0.044580578057109244,
+      "hit_rate_nonoverlap": 0.8978102189781022,
+      "n_nonoverlap": 137,
       "z_default_days": 0
     }
   },
