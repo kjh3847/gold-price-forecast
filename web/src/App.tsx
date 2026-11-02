@@ -6,6 +6,8 @@ import { PlanCalculator } from "./components/PlanCalculator";
 import { ScoreCard } from "./components/ScoreCard";
 import { WeatherCard } from "./components/WeatherCard";
 import { CollectionCard } from "./components/CollectionCard";
+import { DataUpdate } from "./components/DataUpdate";
+import { FutureVolatility } from "./components/FutureVolatility";
 import { loadForecast, type LoadedForecast } from "./data";
 
 type State = { status: "loading" } | { status: "error"; message: string } | ({ status: "ready" } & LoadedForecast);
@@ -39,7 +41,9 @@ export default function App() {
     <div className="page">
       <Header asOf={data.as_of} generatedAt={data.generated_at} isSample={isSample} />
       <main className="main">
+        <DataUpdate onUpdated={data => setState({ status: "ready", data, isSample: false })} />
         <WeatherCard data={data} />
+        <FutureVolatility data={data} />
         <BandCard data={data} />
         <PlanCalculator grade={data.grade} splitRule={data.split_rule} />
         <CollectionCard data={data} isSample={isSample} />

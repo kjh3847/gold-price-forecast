@@ -31,6 +31,12 @@
 .collection button { cursor: pointer; background: var(--accent-soft); }
 .collection button:disabled { cursor: default; opacity: .5; }
 .collection p { overflow-wrap: anywhere; }
+.data-update dialog { width: min(620px, 90vw); max-height: 85vh; overflow: auto; border: 1px solid var(--border); border-radius: 14px; padding: 24px; color: var(--text-primary); background: var(--surface); }
+.data-update dialog::backdrop { background: rgb(0 0 0 / .5); }
+.data-update form { display: grid; gap: 12px; }
+.data-update button, .data-update input { font: inherit; padding: 10px; max-width: 100%; }
+.data-update button { cursor: pointer; color: var(--text-primary); background: var(--accent-soft); border: 1px solid var(--border); border-radius: 8px; }
+.data-update button:disabled { opacity: .5; cursor: default; }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
