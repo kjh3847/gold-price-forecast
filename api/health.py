@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from api.forecast import router as forecast_router
 from api.forecast_full import router as forecast_full_router
+from api.submissions import router as submissions_router
+from api.prices import router as prices_router
 
 app = FastAPI(
     title = "Gold Forecast API",
@@ -13,3 +15,5 @@ def health():
 
 app.include_router(forecast_router)
 app.include_router(forecast_full_router)
+app.include_router(submissions_router)
+app.include_router(prices_router)

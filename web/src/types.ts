@@ -32,6 +32,7 @@ export interface Evaluation extends BandMetrics {
 }
 
 export interface Forecast {
+  volatility_projection?: { date: string; horizon_day: number; cumulative_sigma_pct: number }[];
   generated_at: string;
   as_of: string;
   currency: string;

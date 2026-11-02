@@ -7,6 +7,7 @@ export function Footer() {
       </p>
       <p>분할매수가 한 번에 사는 것보다 평균 매수 단가를 높일 수도 있습니다. 투자 판단과 책임은 본인에게 있습니다.</p>
       <p className="footer__small">강의 프로젝트 · 데이터: 달러 금값(USD/oz) 일간 종가</p>
+      <p className="footer__small">가격 데이터 출처: <a href="https://goldprice.com/gold-price-history" target="_blank" rel="noreferrer">GoldPrice.com</a> (LBMA fixes + Metals.dev)</p>
     </footer>
   );
 }

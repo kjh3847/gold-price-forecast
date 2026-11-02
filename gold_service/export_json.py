@@ -23,6 +23,8 @@ from gold_service.config import Settings
 from gold_service.features import HORIZON
 from gold_service.grading import Grade
 from gold_service.planner import SPLIT_RULES
+from gold_service.trading_calendar import TradingCalendar
+from datetime import timedelta
 
 log = logging.getLogger("gold_service")
 
@@ -71,6 +73,14 @@ def build_payload(session: Session, as_of: date | None = None) -> dict:
     if evaluation is None:
         log.warning("평가 결과가 없습니다 (python -m gold_service.evaluate --start 2024-01-01). evaluation=null로 내보냅니다")
 
+    calendar = TradingCalendar.from_file(Settings.from_env().holidays_file)
+    future_dates = []
+    future_day = as_of_date
+    while len(future_dates) < HORIZON:
+        future_day += timedelta(days=1)
+        if calendar.is_trading_day(future_day):
+            future_dates.append(future_day)
+
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "as_of": as_of_date.isoformat(),
@@ -78,6 +88,11 @@ def build_payload(session: Session, as_of: date | None = None) -> dict:
         "unit": UNIT,
         "price": _num(last["close"], 2),
         "sigma_daily": _num(last["sigma"], 6),
+        "volatility_projection": [
+            {"date": day.isoformat(), "horizon_day": index,
+             "cumulative_sigma_pct": round(float(last["sigma"]) * math.sqrt(index) * 100, 4)}
+            for index, day in enumerate(future_dates, 1)
+        ],
         "grade": _label(last["grade"]),
         "percentile": _num(None if pd.isna(last["percentile"]) else last["percentile"] / 100, 4),
         "is_fallback": bool(last["is_fallback"]),
