@@ -1,10 +1,88 @@
 # 🪙 금 분할매수 도우미
 
+## 과제용 API와 사용자 기록 실행
+
+현재 웹은 `/api/forecast/full`을 읽습니다. 아래 FastAPI를 실행해야 실제 DB 예측과
+사용자 기록 기능을 사용할 수 있습니다. API 실패 시 샘플 표시가 나오고 샘플 저장은 차단됩니다.
+과거 예측은 기준일을 반드시 확인하세요. 제공 CSV는 2026-09-24까지만 있습니다.
+
+```bash
+pip install -e ".[dev]"
+python -m gold_service.run_daily --date 2026-09-24
+python -m uvicorn api.health:app --host 127.0.0.1 --port 8000
+# 다른 터미널
+cd web
+npm ci
+npm run dev
+```
+
+Vite 개발 서버는 `/api`를 8000 포트로 전달합니다. 배포 시에도 같은 출처의 `/api`가
+FastAPI로 전달되도록 구성해야 합니다. 기존 정적 호스팅만으로 기록 API가 실행되지는 않습니다.
+환경변수는 셸/배포 환경에 설정하세요 (`.env` 파일 자동 로딩은 하지 않음).
+
+| API | 동작 |
+|---|---|
+| `GET /api/health` | 프로세스 상태 |
+| `GET /api/forecast/latest`, `/api/forecast/full` | 동일 `DATABASE_URL`의 최신 예측, 데이터 없으면 404 |
+| `POST /api/submissions` | `{forecast_date, weekly_amount, product}`와 서버 DB 예측 스냅샷 저장, 접수번호 반환 |
+| `GET /api/submissions/{접수번호}` | 과거 입력·예측·정답 조회 |
+| `PUT /api/submissions/{접수번호}/actual` | `{kind: "boolean" 또는 "price", value, observed_on}` 저장 |
+
+`weekly_amount`는 1~1,000,000,000의 정수 원, `product`는 `금 현물`, `금 ETF`, `기타`입니다.
+두 값은 분할 계획용 사용자 정보이며 모델 재예측 입력이 아닙니다.
+현재 HAR+GARCH는 **금 종가 수익률만** 사용하고 달러 지수·금리·S&P500·원유는 사용하지 않습니다.
+알고리즘, 63거래일 재학습, 하이퍼파라미터는 변경하지 않았습니다.
+
+정답 T는 **기준일 이후 5번째 거래일 종가가 저장된 90% 가격 범위 안에 있음(경계 포함)**,
+F는 범위 밖이라는 뜻입니다. 방향 예측의 정답이 아닙니다.
+숫자는 같은 대상일의 USD/oz 금 기준가격이며 ETF 가격이나 원화 가격을 입력하면 안 됩니다.
+숫자를 입력하면 서버에서 범위 포함 여부도 계산합니다. `observed_on`은 저장된 `target_date`와
+같아야 하고 미래 대상일의 정답 등록은 거절합니다. `HOLIDAYS_FILE` 미설정 시 주말만 제외하므로
+운영 전 거래소 휴장일을 설정하세요. 정답은 사용자 신고값이며 외부 가격 검증을 하지 않습니다.
+
+`submissions`, `collection_events` 테이블만 추가하며 기존 데이터를 삭제하지 않습니다.
+입력 시점의 예측을 고정 저장하므로 나중의 최신 예측과 섞이지 않습니다.
+접수번호는 브라우저에 보관되고 다른 브라우저에서는 직접 입력할 수 있습니다.
+로그인 없는 과제용 방식이므로 번호를 아는 사람은 해당 기록 조회/정답 수정이 가능합니다.
+이름이나 연락처 등 개인정보는 받지 않습니다.
+
+### AWS CloudWatch / S3
+
+기존 S3 버킷과 CloudWatch 로그 그룹/스트림을 준비하고 다음 값을 설정하세요.
+리소스 생성은 자동으로 수행하지 않습니다.
+
+```text
+AWS_REGION=ap-northeast-2
+COLLECTION_S3_BUCKET=<버킷>
+COLLECTION_LOG_GROUP=<로그 그룹>
+COLLECTION_LOG_STREAM=<로그 스트림>
+```
+
+인증은 boto3 기본 자격증명 체인(IAM 역할, AWS 프로필 등)을 사용합니다.
+Access Key/Secret을 코드나 Git에 넣지 마세요. 실행 역할에는 해당 버킷의
+`collection/*`에 대한 `s3:PutObject`, 해당 스트림의 `logs:PutLogEvents`가 필요합니다.
+
+입력 저장 및 정답 등록마다 UTC 시각, 입력값, 예측 기준일/대상일/결과, 정답과 등록 시각을
+하나의 JSON 이벤트로 기록합니다. S3 키는 `collection/<이벤트 UUID>.json`입니다.
+SQLite 트랜잭션을 먼저 커밋한 뒤 각 대상으로 전송하며 응답의 `delivery`는
+`sent`, `disabled`(설정 없음), `failed`를 구분합니다. DB 저장 성공이 AWS 성공을 뜻하지 않습니다.
+
+```bash
+python -m gold_service.collection  # 설정 후 미전송 이벤트 재전송
+```
+
+S3 재전송은 같은 키를 사용합니다. CloudWatch는 전송 직후 프로세스 중단 시 중복될 수 있으므로
+이벤트 UUID로 구분하세요. CloudWatch 보존/허용 기간 밖의 오래된 이벤트는 거절될 수 있습니다.
+실제 증빙은 S3 객체 JSON과 CloudWatch 로그의 동일 이벤트 ID를 확인해 캡처하세요.
+AWS 설정이 없는 테스트 환경에서는 모의 전송만 검증하며 실제 저장 증빙을 대신하지 않습니다.
+
+---
+
 금을 **매주 정해진 금액으로 사 모으는 사람**에게 이번 주에 **몇 번에 나눠, 어느 요일에** 살지 알려주는 서비스입니다. (강의 프로젝트)
 
 - 금값이 오를지 내릴지는 **예측하지 않습니다**.
 - "다음 5거래일 동안 금값이 얼마나 출렁일지(변동성)"만 예측하고, 이를 정해진 규칙으로 분할 횟수와 매수 요일로 바꿉니다.
-- 백엔드 서버 없이 **Python 배치가 JSON 파일을 만들고 → React 정적 사이트가 그 파일을 읽어 보여주는** 구조입니다.
+- **Python 배치가 SQLite에 예측을 저장하고 → FastAPI가 반환한 결과를 React가 보여주는** 구조입니다. JSON 내보내기도 유지합니다.
 
 > 이 서비스는 예상 변동성에 따라 매수 시점을 나누는 일정 안내입니다. 금값 방향 예측이나 투자 권유가 아니며 수익을 보장하지 않습니다. 분할매수가 평균 단가를 높일 수도 있습니다.
 
@@ -16,7 +94,7 @@
              Python (gold_service)                                   React (web/)
 ┌─────────────────────────────────────────────────────┐      ┌──────────────────────────┐
 │ run_daily ─► prices ─► σ_t(HAR+GARCH) ─► 등급 ─► 5일 범위 │      │                          │
-│              (DB)      (forecasts)                    │      │  fetch /data/forecast.json│
+│              (DB)      (forecasts)                    │      │  fetch /api/forecast/full │
 │ evaluate  ─► walk-forward 지표 (evaluations)           │ ───► │  (실패 시 sample.json)    │
 │ export_json ─► web/public/data/forecast.json          │      │  → 정적 사이트(Vercel 등) │
 └─────────────────────────────────────────────────────┘      └──────────────────────────┘
@@ -41,7 +119,7 @@ python -m gold_service.export_json --out web/public/data/forecast.json
 cd web && npm run dev
 ```
 
-Python 없이 웹만 띄워도 됩니다. 커밋된 `web/public/data/forecast.json`(없으면 `forecast.sample.json`)을 읽습니다. 샘플로 대체되면 화면 위에 "샘플 데이터"가 표시됩니다.
+Python 없이 웹만 띄우면 `forecast.sample.json`을 사용하고 "샘플 데이터"가 표시됩니다. 실제 예측 조회와 입력 저장에는 FastAPI가 필요합니다.
 
 > 현재 데이터(`data/gold_only_ready.csv`)는 **2026-09-24까지**만 있습니다. 그 이후 거래일을 `--date`로 주면 "가격 데이터 없음"(종료 코드 3)으로 끝납니다.
 
@@ -223,11 +301,11 @@ npm run build     # 타입 검사 + dist/ 빌드
 npm run preview   # 빌드 결과 미리보기
 ```
 
-주요 파일: `src/planner.ts`(플랜 순수 함수), `src/chart.ts`(5행 시프트·범위 밖 판정), `src/data.ts`(fetch + 샘플 대체), `src/format.ts`(표시·해설), `src/components/*`.
+주요 파일: `src/planner.ts`(플랜 순수 함수), `src/chart.ts`(5행 시프트·범위 밖 판정), `src/data.ts`(API fetch + 샘플 대체), `src/format.ts`(표시·해설), `src/components/*`.
 
 ### 정적 배포
 
-forecast.json을 새로 내보낸 뒤 커밋·푸시하면 배포 사이트에 반영됩니다.
+아래는 프론트엔드 정적 배포 방법입니다. 실제 예측/기록 기능은 별도 실행한 FastAPI로 `/api` 요청을 전달해야 합니다.
 
 **Vercel**
 1. vercel.com → Add New Project → 이 저장소 선택

@@ -1,0 +1,1 @@
+"""Gold forecast HTTP API."""

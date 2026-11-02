@@ -21,6 +21,17 @@
   --shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 4px 16px rgb(0 0 0 / 0.04);
 }
 
+.collection form { display: grid; gap: 12px; margin: 16px 0; }
+.collection label { display: grid; gap: 6px; margin: 12px 0; }
+.collection input, .collection select, .collection button {
+  font: inherit; padding: 10px; border: 1px solid var(--border);
+  border-radius: 8px; background: var(--surface); color: var(--text-primary);
+  max-width: 100%; min-width: 0;
+}
+.collection button { cursor: pointer; background: var(--accent-soft); }
+.collection button:disabled { cursor: default; opacity: .5; }
+.collection p { overflow-wrap: anywhere; }
+
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;

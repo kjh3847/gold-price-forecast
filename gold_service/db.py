@@ -42,6 +42,25 @@ class Base(DeclarativeBase):
     pass
 
 
+class Submission(Base):
+    """Anonymous receipt ID links an immutable forecast snapshot to later truth."""
+    __tablename__ = "submissions"
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    created_at: Mapped[str] = mapped_column(String(40), nullable=False)
+    user_input: Mapped[dict] = mapped_column(JSON, nullable=False)
+    forecast: Mapped[dict] = mapped_column(JSON, nullable=False)
+    actual: Mapped[dict | None] = mapped_column(JSON)
+    actual_at: Mapped[str | None] = mapped_column(String(40))
+
+
+class CollectionEvent(Base):
+    """Durable per-destination delivery status; failed events can be retried."""
+    __tablename__ = "collection_events"
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    payload: Mapped[dict] = mapped_column(JSON, nullable=False)
+    delivery: Mapped[dict] = mapped_column(JSON, nullable=False)
+
+
 class Price(Base):
     __tablename__ = "prices"
     date: Mapped[date] = mapped_column(Date, primary_key=True)

@@ -5,6 +5,7 @@ import { Header } from "./components/Header";
 import { PlanCalculator } from "./components/PlanCalculator";
 import { ScoreCard } from "./components/ScoreCard";
 import { WeatherCard } from "./components/WeatherCard";
+import { CollectionCard } from "./components/CollectionCard";
 import { loadForecast, type LoadedForecast } from "./data";
 
 type State = { status: "loading" } | { status: "error"; message: string } | ({ status: "ready" } & LoadedForecast);
@@ -41,6 +42,7 @@ export default function App() {
         <WeatherCard data={data} />
         <BandCard data={data} />
         <PlanCalculator grade={data.grade} splitRule={data.split_rule} />
+        <CollectionCard data={data} isSample={isSample} />
         <ScoreCard evaluation={data.evaluation} />
       </main>
       <Footer />
