@@ -15,7 +15,23 @@ Deployment OK: release=run-20261108150631 forecast-request=2026-09-24
 배포 스크립트의 예측 API 확인 결과는 기준일 `2026-09-24`, 등급 `LOW`,
 5거래일 가격 범위 약 `4050.27 ~ 4509.67 USD/oz`였습니다.
 웹의 8080 포트를 검증자 IP에만 허용하고 해당 컴퓨터에서 예측 페이지가 표시되는 것을 확인했습니다.
-EC2에서 입력 저장·재조회, 문구 변경 후 재배포, S3·CloudWatch 실제 전송은 별도 확인 항목입니다.
+EC2에서 입력 저장·재조회와 S3·CloudWatch 실제 전송은 별도 확인 항목입니다.
+
+## EC2 재배포 확인 (2026-11-09 KST)
+
+화면 제목을 ‘이번 주 변동성 전망’으로 변경한 `7e18db0`을 `git pull --ff-only`로 받은 뒤,
+기존 8080 바인딩을 유지하도록 `WEB_BIND=0.0.0.0`을 지정해 `deploy/deploy.sh`를 다시 실행했습니다.
+Python 테스트 76개가 통과했고 웹 테스트와 빌드도 완료됐습니다. 아래는 EC2 로그에서 확인한 결과입니다.
+
+```text
+Updating 5908b65..7e18db0
+Container gold-forecast-api-1  Healthy
+Container gold-forecast-web-1  Healthy
+Deployment OK: release=run-20261108151935 forecast-request=2026-09-24
+```
+
+예측 API가 기존 기준일과 가격 범위를 반환했습니다. 이 로그는 서버 재배포 결과이며,
+브라우저에서 새 제목을 확인하는 절차는 별도로 진행합니다.
 
 ## 로컬 검증 (2026-11-02 KST)
 
