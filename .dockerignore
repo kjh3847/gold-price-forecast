@@ -1,0 +1,15 @@
+.git
+.venv
+.runtime-venv
+.tools
+**/node_modules
+**/dist
+**/__pycache__
+.pytest_cache
+*.db
+*.sqlite3
+.env
+.env.*
+**/*.pem
+**/*.key
+docs/evidence

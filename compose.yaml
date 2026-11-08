@@ -1,0 +1,30 @@
+name: gold-forecast
+services:
+  api:
+    image: gold-forecast-api:${RELEASE:-local}
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.api
+      target: runtime
+    environment:
+      DATABASE_URL: sqlite:////app/storage/gold_service.db
+      AWS_REGION: ${AWS_REGION:-ap-northeast-2}
+      COLLECTION_S3_BUCKET: ${COLLECTION_S3_BUCKET:-}
+      COLLECTION_LOG_GROUP: ${COLLECTION_LOG_GROUP:-}
+      COLLECTION_LOG_STREAM: ${COLLECTION_LOG_STREAM:-}
+    volumes:
+      - gold-data:/app/storage
+    restart: unless-stopped
+  web:
+    image: gold-forecast-web:${RELEASE:-local}
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.web
+    ports:
+      - "${WEB_BIND:-127.0.0.1}:${WEB_PORT:-8080}:8080"
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+volumes:
+  gold-data:
