@@ -30,8 +30,10 @@ Container gold-forecast-web-1  Healthy
 Deployment OK: release=run-20261108151935 forecast-request=2026-09-24
 ```
 
-예측 API가 기존 기준일과 가격 범위를 반환했습니다. 이 로그는 서버 재배포 결과이며,
-브라우저에서 새 제목을 확인하는 절차는 별도로 진행합니다.
+예측 API가 기존 기준일과 가격 범위를 반환했습니다. 재배포 후 브라우저에서 변경된 제목
+‘이번 주 변동성 전망’과 5거래일 예상 변동성 그래프가 표시되는 것을 확인했습니다.
+
+![EC2 재배포 후 변경된 화면 제목](../docs/evidence/ec2-redeployed-forecast.png)
 
 ## 로컬 검증 (2026-11-02 KST)
 
