@@ -33,7 +33,7 @@ describe("App", () => {
 
     expect(await screen.findByText(/샘플 데이터/)).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "금 분할매수 도우미" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "이번 주 변동성 날씨" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "이번 주 변동성 전망" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /다음 5거래일 90% 가격 범위/ })).toBeInTheDocument();
     expect(screen.getByText("4,050 ~ 4,510 달러")).toBeInTheDocument();
     expect(screen.getByText("(±5.4%)")).toBeInTheDocument();

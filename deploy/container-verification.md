@@ -1,5 +1,24 @@
 # 로컬 컨테이너 검증 결과
 
+## EC2 첫 배포 확인 (2026-11-09 KST)
+
+서울 리전의 Ubuntu 24.04 x86 EC2에서 `sudo bash deploy/deploy.sh`로 첫 배포를 실행했습니다.
+Docker Engine 29.1.3 및 Compose 2.40.3 환경에서 Python 테스트 76개가 통과하고,
+웹 테스트와 빌드를 포함한 이미지 빌드가 완료됐습니다. 배포 로그에서 다음 결과를 확인했습니다.
+
+```text
+Container gold-forecast-api-1  Healthy
+Container gold-forecast-web-1  Healthy
+Deployment OK: release=run-20261108150631 forecast-request=2026-09-24
+```
+
+배포 스크립트의 예측 API 확인 결과는 기준일 `2026-09-24`, 등급 `LOW`,
+5거래일 가격 범위 약 `4050.27 ~ 4509.67 USD/oz`였습니다.
+웹의 8080 포트를 검증자 IP에만 허용하고 해당 컴퓨터에서 예측 페이지가 표시되는 것을 확인했습니다.
+EC2에서 입력 저장·재조회, 문구 변경 후 재배포, S3·CloudWatch 실제 전송은 별도 확인 항목입니다.
+
+## 로컬 검증 (2026-11-02 KST)
+
 - 검증일: 2026-11-02 (KST)
 - 실행 환경: Windows Docker Desktop / Linux containers
 - Docker 29.0.1, Compose v2.40.3-desktop.1

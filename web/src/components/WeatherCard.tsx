@@ -6,7 +6,7 @@ export function WeatherCard({ data }: { data: Forecast }) {
   return (
     <section className="card weather" aria-labelledby="weather-title">
       <h2 id="weather-title" className="card__title">
-        이번 주 변동성 날씨
+        이번 주 변동성 전망
       </h2>
       <div className="weather__body">
         <div className={`grade grade--${meta.tone}`}>
