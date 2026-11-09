@@ -529,3 +529,93 @@ thead th {
 .footer__small {
   font-size: 0.75rem;
 }
+
+/* ---------------------------------------------------------------- simulation / trades */
+.sim__headline {
+  font-size: 1.0625rem;
+  line-height: 1.5;
+}
+
+.sim__training {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--bg);
+  font-size: 0.875rem;
+}
+
+.sim__training h3,
+.trades h3 {
+  margin: 0 0 6px;
+  font-size: 0.9375rem;
+}
+
+.plan__policy {
+  margin-top: 10px;
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+}
+
+.model-version code {
+  font-size: 0.75rem;
+  overflow-wrap: anywhere;
+}
+
+.trades {
+  margin: 16px 0;
+}
+
+.trades__list {
+  display: grid;
+  gap: 8px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.trade {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.trade--done {
+  background: var(--bg);
+}
+
+.trade__head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  align-items: baseline;
+  font-variant-numeric: tabular-nums;
+}
+
+.trade__status {
+  margin-left: auto;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+.collection .trade__form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin: 8px 0 0;
+}
+
+.collection .trade__form label {
+  margin: 0;
+}
+
+@media (min-width: 520px) {
+  .collection .trade__form {
+    grid-template-columns: 1fr 1fr auto;
+    align-items: end;
+  }
+}
+
+.trades__summary {
+  margin-top: 10px;
+  font-variant-numeric: tabular-nums;
+}

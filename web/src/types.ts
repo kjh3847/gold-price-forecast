@@ -53,4 +53,62 @@ export interface Forecast {
   history: HistoryPoint[];
   evaluation: Evaluation | null;
   split_rule: Record<GradeLabel, number[]>;
+  policy?: PolicyInfo | null;
+  model?: ModelInfo | null;
+}
+
+export interface GradeSimulation {
+  weeks: number;
+  n_splits: number;
+  timing_error: number;
+  lump_timing_error: number;
+}
+
+// 분할 규칙 과거 시뮬레이션 (타이밍 오차 = |평균 매수 단가 / 그 주 평균 종가 − 1|)
+export interface Simulation {
+  weeks: number;
+  period_start: string;
+  period_end: string;
+  cost_per_trade: number;
+  avg_trades: number;
+  timing_error: number;
+  timing_error_worst: number;
+  lump_timing_error: number;
+  lump_timing_error_worst: number;
+  daily_timing_error: number;
+  cheaper_than_lump_share: number;
+  reward: number;
+  by_grade: Partial<Record<GradeLabel, GradeSimulation>>;
+}
+
+export interface PolicyTraining {
+  trained_at: string;
+  holdout_weeks: number;
+  holdout_start: string;
+  holdout_reward_current: number | null;
+  holdout_reward_candidate: number | null;
+  log_samples: number;
+  current_rule: Record<string, number[]>;
+  candidate_rule: Record<string, number[]>;
+  accepted: boolean;
+  reason: string;
+  previous_version?: string | null;
+}
+
+export interface PolicyInfo {
+  version: string;
+  source: "default" | "trained";
+  activated_at: string | null;
+  cost_per_trade: number;
+  simulation: Simulation | null;
+  training: PolicyTraining | null;
+  previous_version: string | null;
+}
+
+export interface ModelInfo {
+  version: string;
+  trained_on: string;
+  last_train_row: string;
+  n_train_rows: number;
+  name: string;
 }

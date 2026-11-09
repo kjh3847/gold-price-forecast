@@ -7,6 +7,7 @@ DB(forecasts, prices, evaluations)만 읽는다. run_daily → (evaluate) → ex
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import logging
 import math
@@ -42,8 +43,44 @@ def _label(code) -> str | None:
     return None if code is None or pd.isna(code) else Grade(code).label
 
 
-def split_rule_json() -> dict[str, list[int]]:
-    return {grade.label: list(days) for grade, days in SPLIT_RULES.items()}
+def split_rule_json(rule: dict | None = None) -> dict[str, list[int]]:
+    """{"낮음": [0], ...}. rule 이 없으면 기본 규칙."""
+    return {grade.label: list(days) for grade, days in (rule or SPLIT_RULES).items()}
+
+
+def model_info(session: Session, as_of: date) -> dict | None:
+    """기준일 예측에 쓰인(그 이전 최신) 모델 파라미터의 버전."""
+    row = db.latest_params_row(session, as_of)
+    if row is None:
+        return None
+    digest = hashlib.sha1(json.dumps({"har": row.har, "garch": row.garch}, sort_keys=True).encode()).hexdigest()[:8]
+    return {
+        "version": f"model-{row.trained_on.isoformat()}-{digest}",
+        "trained_on": row.trained_on.isoformat(),
+        "last_train_row": row.last_train_row.isoformat(),
+        "n_train_rows": row.n_train_rows,
+        "name": "HAR + GARCH(1,1) 평균",
+    }
+
+
+def policy_info(session: Session) -> tuple[dict, dict | None]:
+    """(split_rule, policy 메타). 등록된 규칙이 없으면 기본 규칙과 None."""
+    row = db.active_policy_row(session)
+    if row is None:
+        return split_rule_json(), None
+    rule = {Grade(k): v for k, v in row.rule.items()}
+    previous = None
+    if row.metrics.get("training"):
+        previous = row.metrics["training"].get("previous_version")
+    return split_rule_json(rule), {
+        "version": row.version,
+        "source": row.source,
+        "activated_at": row.created_at.isoformat(timespec="seconds") if row.created_at else None,
+        "cost_per_trade": row.cost_per_trade,
+        "simulation": row.metrics.get("simulation"),
+        "training": row.metrics.get("training"),
+        "previous_version": previous,
+    }
 
 
 def build_payload(session: Session, as_of: date | None = None) -> dict:
@@ -72,6 +109,8 @@ def build_payload(session: Session, as_of: date | None = None) -> dict:
     evaluation = db.latest_evaluation(session)
     if evaluation is None:
         log.warning("평가 결과가 없습니다 (python -m gold_service.evaluate --start 2024-01-01). evaluation=null로 내보냅니다")
+
+    split_rule, policy = policy_info(session)
 
     calendar = TradingCalendar.from_file(Settings.from_env().holidays_file)
     future_dates = []
@@ -106,7 +145,9 @@ def build_payload(session: Session, as_of: date | None = None) -> dict:
         },
         "history": history,
         "evaluation": evaluation,
-        "split_rule": split_rule_json(),
+        "split_rule": split_rule,
+        "policy": policy,
+        "model": model_info(session, as_of_date),
     }
 
 

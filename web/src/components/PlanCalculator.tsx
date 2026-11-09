@@ -1,7 +1,8 @@
 import { useId, useState } from "react";
 import { formatWon } from "../format";
 import { WEEKDAY_LABELS, buildPlan } from "../planner";
-import type { GradeLabel } from "../types";
+import type { GradeLabel, PolicyInfo } from "../types";
+import { policyLabel } from "./SimulationCard";
 
 const PRODUCTS = ["KRX 금현물", "금 ETF", "골드뱅킹"] as const;
 const DEFAULT_AMOUNT = 300_000;
@@ -10,6 +11,7 @@ const MAX_AMOUNT = 1_000_000_000;
 interface Props {
   grade: GradeLabel;
   splitRule: Record<GradeLabel, number[]>;
+  policy?: PolicyInfo | null;
 }
 
 export function parseAmount(text: string): number | null {
@@ -19,7 +21,7 @@ export function parseAmount(text: string): number | null {
   return n > 0 && n <= MAX_AMOUNT ? n : null;
 }
 
-export function PlanCalculator({ grade, splitRule }: Props) {
+export function PlanCalculator({ grade, splitRule, policy }: Props) {
   const amountId = useId();
   const productId = useId();
   const [amountText, setAmountText] = useState(DEFAULT_AMOUNT.toLocaleString("ko-KR"));
@@ -76,6 +78,10 @@ export function PlanCalculator({ grade, splitRule }: Props) {
               </li>
             ))}
           </ol>
+          <p className="plan__policy">
+            적용 규칙: {policyLabel(policy)}
+            {policy?.source === "trained" && " · 과거 데이터와 매수 기록으로 학습한 분할 횟수예요"}
+          </p>
           {tooSmall && <p className="notice">금액이 분할 횟수보다 작아 0원인 회차가 있어요.</p>}
           <p className="hint">
             휴장일 정보는 반영하지 않았어요. 계획한 요일이 휴장이면 그 주의 다음 거래일로 미뤄요. 회차 금액은 원 단위로

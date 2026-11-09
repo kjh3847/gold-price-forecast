@@ -1,10 +1,13 @@
 import { useState, type FormEvent } from "react";
 import type { Forecast } from "../types";
+import { TradeLog, type PlanSnapshot, type TradeRecord, type TradeSummary } from "./TradeLog";
 
 interface Receipt {
   id: string;
-  forecast: Forecast & { target_date: string };
+  forecast: Forecast & { target_date: string; plan?: PlanSnapshot };
   actual: { within_band: boolean } | null;
+  trades?: TradeRecord[];
+  trade_summary?: TradeSummary;
   delivery?: Record<string, string>;
 }
 
@@ -47,6 +50,13 @@ export function CollectionCard({ data, isSample }: { data: Forecast; isSample: b
     }), true);
   }
 
+  function saveTrade(seq: number, tradeDate: string, price: number) {
+    if (!receipt) return;
+    void run(() => request(`/api/submissions/${receipt.id}/trades/${seq}`, "PUT", {
+      trade_date: tradeDate, price,
+    }), true);
+  }
+
   function saveActual(event: FormEvent) {
     event.preventDefault();
     if (!receipt) return;
@@ -57,7 +67,7 @@ export function CollectionCard({ data, isSample }: { data: Forecast; isSample: b
   }
 
   return <section className="card collection" aria-labelledby="collection-title">
-    <h2 id="collection-title">입력값과 실제 정답 기록</h2>
+    <h2 id="collection-title">입력값 · 매수 기록 · 실제 정답</h2>
     <p>주간 금액과 상품은 분할 계획용이며 AI 모델 입력값은 금 종가 수익률입니다.</p>
     <p>기준일 {data.as_of} · 실제 가격 단위: {data.currency}/{data.unit}. 예상 범위는 해당 금 기준가격에만 적용됩니다.</p>
     {isSample && <p role="alert">샘플 예측은 저장할 수 없습니다. API 연결 후 새로고침하세요.</p>}
@@ -69,6 +79,8 @@ export function CollectionCard({ data, isSample }: { data: Forecast; isSample: b
     <p>접수번호를 보관하세요. 번호를 아는 사람이 기록을 조회하고 정답을 수정할 수 있습니다.</p>
     <label>접수번호 <input value={id} onChange={e => { setId(e.target.value); setReceipt(null); }} /></label>
     <button disabled={busy || !id.trim()} onClick={() => void run(() => request(`/api/submissions/${encodeURIComponent(id.trim())}`), false)}>접수 기록 조회</button>
+    {receipt && <TradeLog plan={receipt.forecast.plan} trades={receipt.trades ?? []} summary={receipt.trade_summary}
+      unit={`${receipt.forecast.currency}/${receipt.forecast.unit}`} busy={busy} onSave={saveTrade} />}
     {receipt && <form onSubmit={saveActual}>
       <p>저장된 예측: {receipt.forecast.as_of} → 대상일 {receipt.forecast.target_date}, 범위 {receipt.forecast.band.low} ~ {receipt.forecast.band.high} {receipt.forecast.currency}/{receipt.forecast.unit}</p>
       <p>T/F는 대상일 종가가 위 범위 안이면 T, 밖이면 F입니다. 대상일 이후에 입력하세요. 휴장일 미설정 시 주말만 제외합니다.</p>

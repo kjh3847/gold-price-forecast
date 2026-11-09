@@ -1,6 +1,7 @@
 import math
 from datetime import date, datetime, timedelta, timezone
 from typing import Literal
+from zoneinfo import ZoneInfo
 from uuid import UUID, uuid4
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -13,6 +14,13 @@ from gold_service import db
 from gold_service.collection import deliver
 from gold_service.trading_calendar import TradingCalendar
 from gold_service.config import Settings
+from gold_service.grading import Grade
+from gold_service.planner import allocate_amounts, split_weekdays
+from gold_service.policy import active_rule
+
+KST = ZoneInfo("Asia/Seoul")
+LABEL_TO_GRADE = {g.label: g for g in Grade}
+TRADE_WINDOW_DAYS = 21
 
 router = APIRouter()
 
@@ -42,12 +50,50 @@ class Actual(BaseModel):
         return values
 
 
+class Trade(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    trade_date: date
+    price: float = Field(gt=0, allow_inf_nan=False)
+
+
 def now():
     return datetime.now(timezone.utc).isoformat()
 
 
+def trade_summary(row):
+    plan = row.forecast.get("plan") or {}
+    trades = row.executions
+    total = sum(t.amount for t in trades)
+    return {
+        "n_splits": plan.get("n_splits"),
+        "done": len(trades),
+        "total_amount": total,
+        # 금액을 나눠 샀을 때 평균 단가 = 총액 / Σ(회차 금액 / 단가)
+        "avg_cost": round(total / sum(t.amount / t.price for t in trades), 4) if trades else None,
+    }
+
+
 def response(row):
-    return {key: getattr(row, key) for key in ("id", "created_at", "user_input", "forecast", "actual", "actual_at")}
+    result = {key: getattr(row, key) for key in ("id", "created_at", "user_input", "forecast", "actual", "actual_at")}
+    result["trades"] = [
+        {"seq": t.seq, "trade_date": t.trade_date.isoformat(), "price": t.price, "amount": t.amount,
+         "recorded_at": t.recorded_at}
+        for t in row.executions
+    ]
+    result["trade_summary"] = trade_summary(row)
+    return result
+
+
+def plan_snapshot(session, grade_label, weekly_amount):
+    """입력 시점의 서비스 분할 규칙으로 회차별 요일·금액을 고정해 둔다."""
+    rule, version = active_rule(session)
+    weekdays = split_weekdays(LABEL_TO_GRADE[grade_label], rule)
+    amounts = allocate_amounts(weekly_amount, len(weekdays))
+    return {
+        "policy_version": version,
+        "n_splits": len(weekdays),
+        "items": [{"seq": i + 1, "weekday": wd, "amount": a} for i, (wd, a) in enumerate(zip(weekdays, amounts))],
+    }
 
 
 def record_event(session, row, kind):
@@ -72,6 +118,7 @@ def create_submission(body: Input, session: Session = Depends(get_session)):
         while not calendar.is_trading_day(target):
             target += timedelta(days=1)
     snapshot["target_date"] = target.isoformat()
+    snapshot["plan"] = plan_snapshot(session, snapshot["grade"], body.weekly_amount)
     row = db.Submission(id=str(uuid4()), created_at=now(), user_input=body.model_dump(mode="json"), forecast=snapshot)
     session.add(row)
     return record_event(session, row, "input_saved")
@@ -97,3 +144,28 @@ def save_actual(receipt: UUID, body: Actual, session: Session = Depends(get_sess
     actual["within_band"] = (row.forecast["band"]["low"] <= body.value <= row.forecast["band"]["high"]) if body.kind == "price" else body.value
     row.actual, row.actual_at = actual, now()
     return record_event(session, row, "actual_saved")
+
+
+@router.put("/api/submissions/{receipt}/trades/{seq}")
+def save_trade(receipt: UUID, seq: int, body: Trade, session: Session = Depends(get_session)):
+    """플랜 회차의 실제 매수(체결일·단가)를 기록한다. 같은 회차를 다시 보내면 덮어쓴다."""
+    row = session.get(db.Submission, str(receipt))
+    if row is None:
+        raise HTTPException(404, "접수번호를 찾을 수 없습니다.")
+    plan = row.forecast.get("plan")
+    if not plan:
+        raise HTTPException(409, "분할 플랜이 없는 예전 접수입니다. 새로 입력값을 저장하세요.")
+    item = next((it for it in plan["items"] if it["seq"] == seq), None)
+    if item is None:
+        raise HTTPException(404, f"{seq}회차가 플랜에 없습니다.")
+    as_of = date.fromisoformat(row.forecast["as_of"])
+    today = datetime.now(KST).date()
+    if not (as_of < body.trade_date <= min(today, as_of + timedelta(days=TRADE_WINDOW_DAYS))):
+        raise HTTPException(422, f"체결일은 예측 기준일({as_of}) 이후 {TRADE_WINDOW_DAYS}일 이내이면서 오늘 이전이어야 합니다.")
+    trade = next((t for t in row.executions if t.seq == seq), None)
+    if trade is None:
+        trade = db.Execution(seq=seq, amount=item["amount"])
+        row.executions.append(trade)
+    trade.trade_date, trade.price, trade.recorded_at = body.trade_date, body.price, now()
+    session.flush()
+    return record_event(session, row, "trade_saved")

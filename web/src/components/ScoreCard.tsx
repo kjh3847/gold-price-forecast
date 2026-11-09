@@ -1,7 +1,7 @@
 import { formatDate, formatPct } from "../format";
-import type { Evaluation } from "../types";
+import type { Evaluation, ModelInfo } from "../types";
 
-export function ScoreCard({ evaluation }: { evaluation: Evaluation | null }) {
+export function ScoreCard({ evaluation, model }: { evaluation: Evaluation | null; model?: ModelInfo | null }) {
   return (
     <section className="card" aria-labelledby="score-title">
       <h2 id="score-title" className="card__title">
@@ -11,6 +11,12 @@ export function ScoreCard({ evaluation }: { evaluation: Evaluation | null }) {
         <p className="hint">평가 결과가 아직 없어요. (python -m gold_service.evaluate 실행 후 다시 내보내 주세요)</p>
       ) : (
         <Score evaluation={evaluation} />
+      )}
+      {model && (
+        <p className="hint model-version">
+          서비스 중인 모델: {model.name} · <code>{model.version}</code> · {formatDate(model.trained_on)} 기준 학습
+          (학습 행 {model.n_train_rows.toLocaleString("ko-KR")}개, 마지막 학습 행 {model.last_train_row})
+        </p>
       )}
     </section>
   );
