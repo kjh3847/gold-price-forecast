@@ -1,20 +1,47 @@
 {
-  "generated_at": "2026-10-26T07:19:44+00:00",
+  "generated_at": "2026-11-09T08:15:49+00:00",
   "as_of": "2026-09-24",
   "currency": "USD",
   "unit": "oz",
   "price": 4273.8,
-  "sigma_daily": 0.013111,
+  "sigma_daily": 0.013082,
+  "volatility_projection": [
+    {
+      "date": "2026-09-25",
+      "horizon_day": 1,
+      "cumulative_sigma_pct": 1.3082
+    },
+    {
+      "date": "2026-09-28",
+      "horizon_day": 2,
+      "cumulative_sigma_pct": 1.8501
+    },
+    {
+      "date": "2026-09-29",
+      "horizon_day": 3,
+      "cumulative_sigma_pct": 2.266
+    },
+    {
+      "date": "2026-09-30",
+      "horizon_day": 4,
+      "cumulative_sigma_pct": 2.6165
+    },
+    {
+      "date": "2026-10-01",
+      "horizon_day": 5,
+      "cumulative_sigma_pct": 2.9253
+    }
+  ],
   "grade": "낮음",
-  "percentile": 0.3254,
+  "percentile": 0.3095,
   "is_fallback": false,
   "band": {
     "horizon_days": 5,
     "coverage": 0.9,
     "z": 1.8323,
     "z_is_default": false,
-    "low": 4050.27,
-    "high": 4509.67
+    "low": 4050.75,
+    "high": 4509.13
   },
   "history": [
     {
@@ -1036,7 +1063,7 @@
     {
       "date": "2026-03-20",
       "price": 4562.55,
-      "sigma_daily": 0.020219,
+      "sigma_daily": 0.02022,
       "grade": "매우 높음",
       "band_low": 4162.75,
       "band_high": 5000.74
@@ -1582,7 +1609,7 @@
       "price": 4088.39,
       "sigma_daily": 0.015858,
       "grade": "높음",
-      "band_low": 3825.45,
+      "band_low": 3825.44,
       "band_high": 4369.4
     },
     {
@@ -1972,7 +1999,7 @@
     {
       "date": "2026-09-03",
       "price": 4472.97,
-      "sigma_daily": 0.016775,
+      "sigma_daily": 0.016774,
       "grade": "높음",
       "band_low": 4169.24,
       "band_high": 4798.82
@@ -2092,41 +2119,43 @@
     {
       "date": "2026-09-24",
       "price": 4273.8,
-      "sigma_daily": 0.013111,
+      "sigma_daily": 0.013082,
       "grade": "낮음",
-      "band_low": 4050.27,
-      "band_high": 4509.67
+      "band_low": 4050.75,
+      "band_high": 4509.13
     }
   ],
   "evaluation": {
     "model_name": "HAR+GARCH 평균",
     "period_start": "2024-01-02",
-    "period_end": "2026-09-10",
-    "n_days": 681,
+    "period_end": "2026-09-17",
+    "n_days": 686,
     "coverage_target": 0.9,
-    "hit_rate": 0.8942731277533039,
-    "avg_width": 0.0465442816174396,
-    "hit_rate_nonoverlap": 0.8978102189781022,
-    "n_nonoverlap": 137,
+    "hit_rate": 0.8950437317784257,
+    "avg_width": 0.04663990282292405,
+    "hit_rate_nonoverlap": 0.8985507246376812,
+    "n_nonoverlap": 138,
     "z_default_days": 0,
-    "qlike_improvement": 0.07731043751156097,
+    "qlike_improvement": 0.07929639461390603,
     "fallback_days": 0,
     "baseline": {
       "name": "최근 1년 변동성",
-      "hit_rate": 0.8839941262848752,
-      "avg_width": 0.044580578057109244,
-      "hit_rate_nonoverlap": 0.8978102189781022,
-      "n_nonoverlap": 137,
+      "hit_rate": 0.8848396501457726,
+      "avg_width": 0.04479093699320134,
+      "hit_rate_nonoverlap": 0.8985507246376812,
+      "n_nonoverlap": 138,
       "z_default_days": 0
     }
   },
   "split_rule": {
     "낮음": [
-      0
+      0,
+      3
     ],
     "보통": [
       0,
-      3
+      2,
+      4
     ],
     "높음": [
       0,
@@ -2135,10 +2164,118 @@
     ],
     "매우 높음": [
       0,
-      1,
       2,
-      3,
       4
     ]
+  },
+  "policy": {
+    "version": "policy-83df0498",
+    "source": "trained",
+    "activated_at": "2026-11-09T08:15:47",
+    "cost_per_trade": 0.001,
+    "simulation": {
+      "weeks": 465,
+      "period_start": "2017-08-29",
+      "period_end": "2026-09-21",
+      "cost_per_trade": 0.001,
+      "avg_trades": 2.669,
+      "timing_error": 0.0018,
+      "timing_error_worst": 0.010073,
+      "lump_timing_error": 0.007381,
+      "lump_timing_error_worst": 0.045276,
+      "daily_timing_error": 0.000214,
+      "cheaper_than_lump_share": 0.4452,
+      "reward": -0.003469,
+      "by_grade": {
+        "낮음": {
+          "weeks": 154,
+          "n_splits": 2,
+          "timing_error": 0.002171,
+          "lump_timing_error": 0.006188
+        },
+        "보통": {
+          "weeks": 141,
+          "n_splits": 3,
+          "timing_error": 0.001529,
+          "lump_timing_error": 0.006957
+        },
+        "높음": {
+          "weeks": 107,
+          "n_splits": 3,
+          "timing_error": 0.00158,
+          "lump_timing_error": 0.00901
+        },
+        "매우 높음": {
+          "weeks": 63,
+          "n_splits": 3,
+          "timing_error": 0.001872,
+          "lump_timing_error": 0.008477
+        }
+      }
+    },
+    "training": {
+      "trained_at": "2026-11-09T08:15:47+00:00",
+      "cost_per_trade": 0.001,
+      "train_weeks": 413,
+      "log_samples": 0,
+      "holdout_weeks": 52,
+      "holdout_start": "2025-09-22",
+      "holdout_reward_current": -0.004756,
+      "holdout_reward_candidate": -0.004558,
+      "current_rule": {
+        "LOW": [
+          0
+        ],
+        "NORMAL": [
+          0,
+          3
+        ],
+        "HIGH": [
+          0,
+          2,
+          4
+        ],
+        "VERY_HIGH": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "candidate_rule": {
+        "LOW": [
+          0,
+          3
+        ],
+        "NORMAL": [
+          0,
+          2,
+          4
+        ],
+        "HIGH": [
+          0,
+          2,
+          4
+        ],
+        "VERY_HIGH": [
+          0,
+          2,
+          4
+        ]
+      },
+      "accepted": true,
+      "reason": "검증 기간 보상이 현재 규칙보다 높아 채택합니다",
+      "log_stats": null,
+      "previous_version": "policy-896c2ac3"
+    },
+    "previous_version": "policy-896c2ac3"
+  },
+  "model": {
+    "version": "model-2026-09-24-7ec5e967",
+    "trained_on": "2026-09-24",
+    "last_train_row": "2026-09-17",
+    "n_train_rows": 2665,
+    "name": "HAR + GARCH(1,1) 평균"
   }
 }

@@ -51,6 +51,35 @@ class Submission(Base):
     forecast: Mapped[dict] = mapped_column(JSON, nullable=False)
     actual: Mapped[dict | None] = mapped_column(JSON)
     actual_at: Mapped[str | None] = mapped_column(String(40))
+    executions: Mapped[list["Execution"]] = relationship(
+        back_populates="submission", cascade="all, delete-orphan", order_by="Execution.seq"
+    )
+
+
+class Execution(Base):
+    """접수번호별 플랜 회차의 실제 매수 기록 (사용자가 직접 입력)."""
+    __tablename__ = "executions"
+    __table_args__ = (UniqueConstraint("submission_id", "seq"),)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    submission_id: Mapped[str] = mapped_column(ForeignKey("submissions.id", ondelete="CASCADE"), nullable=False)
+    seq: Mapped[int] = mapped_column(Integer, nullable=False)
+    trade_date: Mapped[date] = mapped_column(Date, nullable=False)
+    price: Mapped[float] = mapped_column(Float, nullable=False)  # 체결 단가 (forecast 통화/단위)
+    amount: Mapped[int] = mapped_column(BigInteger, nullable=False)  # 원
+    recorded_at: Mapped[str] = mapped_column(String(40), nullable=False)
+    submission: Mapped[Submission] = relationship(back_populates="executions")
+
+
+class PolicyRow(Base):
+    """분할 규칙(등급 → 매수 요일) 버전. active=True 인 행이 서비스에 쓰인다."""
+    __tablename__ = "policies"
+    version: Mapped[str] = mapped_column(String(40), primary_key=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now)
+    source: Mapped[str] = mapped_column(String(16), nullable=False)  # default | trained
+    rule: Mapped[dict] = mapped_column(JSON, nullable=False)  # {"LOW": [0], ...}
+    cost_per_trade: Mapped[float] = mapped_column(Float, nullable=False)
+    metrics: Mapped[dict] = mapped_column(JSON, nullable=False)  # 시뮬레이션·학습 결과
+    active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
 
 
 class CollectionEvent(Base):
@@ -366,3 +395,32 @@ def save_evaluation(session: Session, period_start: date, period_end: date, metr
 def latest_evaluation(session: Session) -> dict | None:
     row = session.scalar(select(EvaluationRow).order_by(EvaluationRow.created_at.desc()))
     return dict(row.metrics) if row else None
+
+
+# ---------------------------------------------------------------- policies
+def active_policy_row(session: Session) -> PolicyRow | None:
+    return session.scalar(select(PolicyRow).where(PolicyRow.active.is_(True)).order_by(PolicyRow.created_at.desc()))
+
+
+def policy_rows(session: Session) -> list[PolicyRow]:
+    return list(session.scalars(select(PolicyRow).order_by(PolicyRow.created_at)))
+
+
+def save_policy(session: Session, version: str, source: str, rule: dict, cost: float, metrics: dict,
+                activate: bool) -> PolicyRow:
+    row = session.get(PolicyRow, version) or PolicyRow(version=version)
+    row.source, row.rule, row.cost_per_trade, row.metrics = source, rule, cost, metrics
+    if activate:
+        for other in session.scalars(select(PolicyRow).where(PolicyRow.active.is_(True))):
+            other.active = False
+        row.active = True
+        row.created_at = _now()
+    session.add(row)
+    session.flush()
+    return row
+
+
+def latest_params_row(session: Session, end: date) -> ModelParamsRow | None:
+    return session.scalar(
+        select(ModelParamsRow).where(ModelParamsRow.trained_on <= end).order_by(ModelParamsRow.trained_on.desc())
+    )

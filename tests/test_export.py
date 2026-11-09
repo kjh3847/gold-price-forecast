@@ -7,6 +7,7 @@ import pytest
 from sqlalchemy.orm import Session
 
 from gold_service import db, export_json, run_daily
+from gold_service.grading import Grade
 from gold_service.export_planner_fixtures import DEFAULT_OUT, build_fixtures, dumps
 
 from .test_run_daily import settings  # noqa: F401 - fixture 재사용
@@ -27,7 +28,17 @@ def check_schema(p: dict):
     assert p["band"]["low"] < p["price"] < p["band"]["high"]
     assert all(HISTORY_KEYS <= h.keys() for h in p["history"])
     assert p["history"][-1]["date"] == p["as_of"]
-    assert p["split_rule"] == {"낮음": [0], "보통": [0, 3], "높음": [0, 2, 4], "매우 높음": [0, 1, 2, 3, 4]}
+    # 분할 규칙은 서비스 중인 정책을 따른다: 허용된 요일 패턴이고, 등급이 높을수록 회차가 같거나 많다
+    allowed = [[0], [0, 3], [0, 2, 4], [0, 1, 2, 3, 4]]
+    rule = p["split_rule"]
+    assert list(rule) == ["낮음", "보통", "높음", "매우 높음"] and all(v in allowed for v in rule.values())
+    counts = [len(v) for v in rule.values()]
+    assert counts == sorted(counts)
+    if p.get("policy") and p["policy"]["source"] == "trained":
+        trained = p["policy"]["training"]["candidate_rule"]
+        assert {Grade(k).label: v for k, v in trained.items()} == rule
+    if p.get("model"):
+        assert p["model"]["version"].startswith("model-")
 
 
 def test_export_from_db(settings):  # noqa: F811

@@ -59,9 +59,9 @@ class WeeklyPlan:
         return "\n".join(lines)
 
 
-def split_weekdays(grade: Grade) -> list[int]:
-    """등급별 계획 요일 목록 (길이 = 분할 횟수)."""
-    return list(SPLIT_RULES[grade])
+def split_weekdays(grade: Grade, rule: dict[Grade, list[int]] | None = None) -> list[int]:
+    """등급별 계획 요일 목록 (길이 = 분할 횟수). rule 이 없으면 기본 규칙(SPLIT_RULES)."""
+    return list((rule or SPLIT_RULES)[grade])
 
 
 def resolve_trade_dates(weekdays: list[int], trading_days: list[date]) -> list[date]:
@@ -98,8 +98,9 @@ def build_plan(
     forecast_date: date,
     weekly_amount: int,
     trading_days: list[date],
+    rule: dict[Grade, list[int]] | None = None,
 ) -> WeeklyPlan:
-    weekdays = split_weekdays(grade)
+    weekdays = split_weekdays(grade, rule)
     dates = resolve_trade_dates(weekdays, trading_days)
     amounts = allocate_amounts(weekly_amount, len(weekdays))
     items = [

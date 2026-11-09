@@ -255,3 +255,6 @@ coverage/
 # 금 분할매수 도우미: 로컬 SQLite DB
 *.db
 *.sqlite3
+
+# 서비스 로그 전처리 결과 (개인 입력 포함 가능)
+data/feedback/

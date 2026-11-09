@@ -1,20 +1,47 @@
 {
-  "generated_at": "2026-10-12T08:35:01+00:00",
+  "generated_at": "2026-11-09T08:15:49+00:00",
   "as_of": "2026-09-24",
   "currency": "USD",
   "unit": "oz",
   "price": 4273.8,
-  "sigma_daily": 0.013111,
+  "sigma_daily": 0.013082,
+  "volatility_projection": [
+    {
+      "date": "2026-09-25",
+      "horizon_day": 1,
+      "cumulative_sigma_pct": 1.3082
+    },
+    {
+      "date": "2026-09-28",
+      "horizon_day": 2,
+      "cumulative_sigma_pct": 1.8501
+    },
+    {
+      "date": "2026-09-29",
+      "horizon_day": 3,
+      "cumulative_sigma_pct": 2.266
+    },
+    {
+      "date": "2026-09-30",
+      "horizon_day": 4,
+      "cumulative_sigma_pct": 2.6165
+    },
+    {
+      "date": "2026-10-01",
+      "horizon_day": 5,
+      "cumulative_sigma_pct": 2.9253
+    }
+  ],
   "grade": "낮음",
-  "percentile": 0.3254,
+  "percentile": 0.3095,
   "is_fallback": false,
   "band": {
     "horizon_days": 5,
     "coverage": 0.9,
     "z": 1.8323,
     "z_is_default": false,
-    "low": 4050.27,
-    "high": 4509.67
+    "low": 4050.75,
+    "high": 4509.13
   },
   "history": [
     {
@@ -2092,10 +2119,10 @@
     {
       "date": "2026-09-24",
       "price": 4273.8,
-      "sigma_daily": 0.013111,
+      "sigma_daily": 0.013082,
       "grade": "낮음",
-      "band_low": 4050.27,
-      "band_high": 4509.67
+      "band_low": 4050.75,
+      "band_high": 4509.13
     }
   ],
   "evaluation": {
@@ -2122,11 +2149,13 @@
   },
   "split_rule": {
     "낮음": [
-      0
+      0,
+      3
     ],
     "보통": [
       0,
-      3
+      2,
+      4
     ],
     "높음": [
       0,
@@ -2135,10 +2164,118 @@
     ],
     "매우 높음": [
       0,
-      1,
       2,
-      3,
       4
     ]
+  },
+  "policy": {
+    "version": "policy-83df0498",
+    "source": "trained",
+    "activated_at": "2026-11-09T08:15:47",
+    "cost_per_trade": 0.001,
+    "simulation": {
+      "weeks": 465,
+      "period_start": "2017-08-29",
+      "period_end": "2026-09-21",
+      "cost_per_trade": 0.001,
+      "avg_trades": 2.669,
+      "timing_error": 0.0018,
+      "timing_error_worst": 0.010073,
+      "lump_timing_error": 0.007381,
+      "lump_timing_error_worst": 0.045276,
+      "daily_timing_error": 0.000214,
+      "cheaper_than_lump_share": 0.4452,
+      "reward": -0.003469,
+      "by_grade": {
+        "낮음": {
+          "weeks": 154,
+          "n_splits": 2,
+          "timing_error": 0.002171,
+          "lump_timing_error": 0.006188
+        },
+        "보통": {
+          "weeks": 141,
+          "n_splits": 3,
+          "timing_error": 0.001529,
+          "lump_timing_error": 0.006957
+        },
+        "높음": {
+          "weeks": 107,
+          "n_splits": 3,
+          "timing_error": 0.00158,
+          "lump_timing_error": 0.00901
+        },
+        "매우 높음": {
+          "weeks": 63,
+          "n_splits": 3,
+          "timing_error": 0.001872,
+          "lump_timing_error": 0.008477
+        }
+      }
+    },
+    "training": {
+      "trained_at": "2026-11-09T08:15:47+00:00",
+      "cost_per_trade": 0.001,
+      "train_weeks": 413,
+      "log_samples": 0,
+      "holdout_weeks": 52,
+      "holdout_start": "2025-09-22",
+      "holdout_reward_current": -0.004756,
+      "holdout_reward_candidate": -0.004558,
+      "current_rule": {
+        "LOW": [
+          0
+        ],
+        "NORMAL": [
+          0,
+          3
+        ],
+        "HIGH": [
+          0,
+          2,
+          4
+        ],
+        "VERY_HIGH": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "candidate_rule": {
+        "LOW": [
+          0,
+          3
+        ],
+        "NORMAL": [
+          0,
+          2,
+          4
+        ],
+        "HIGH": [
+          0,
+          2,
+          4
+        ],
+        "VERY_HIGH": [
+          0,
+          2,
+          4
+        ]
+      },
+      "accepted": true,
+      "reason": "검증 기간 보상이 현재 규칙보다 높아 채택합니다",
+      "log_stats": null,
+      "previous_version": "policy-896c2ac3"
+    },
+    "previous_version": "policy-896c2ac3"
+  },
+  "model": {
+    "version": "model-2026-09-24-7ec5e967",
+    "trained_on": "2026-09-24",
+    "last_train_row": "2026-09-17",
+    "n_train_rows": 2665,
+    "name": "HAR + GARCH(1,1) 평균"
   }
 }

@@ -24,7 +24,8 @@ from gold_service.bands import compute_bands
 from gold_service.config import Settings
 from gold_service.features import forward_variance, log_returns, realized_vol
 from gold_service.grading import Grade, grade_from_percentile, percentile_of_last
-from gold_service.models import forecast_positions
+from gold_service.models import forecast_positions, train
+from gold_service.policy import active_rule, ensure_active_policy
 from gold_service.monitoring import MonitoringResult, compute_metrics, should_alert
 from gold_service.notify import LogNotifier, Notifier
 from gold_service.planner import build_plan
@@ -62,10 +63,21 @@ def collect(session: Session, source: PriceSource, target: date) -> pd.Series:
     return db.load_close(session, target)
 
 
-def forecast(session: Session, close: pd.Series, backfill_days: int) -> tuple[pd.Series, list, list]:
-    """예측이 없는 최근 거래일(백필 범위)과 오늘을 예측·저장한다."""
+def forecast(session: Session, close: pd.Series, backfill_days: int,
+             force_retrain: bool = False) -> tuple[pd.Series, list, list]:
+    """예측이 없는 최근 거래일(백필 범위)과 오늘을 예측·저장한다.
+
+    force_retrain=True 면 63거래일 주기와 관계없이 오늘 기준으로 다시 학습한다 (같은 누수 방지 규칙).
+    """
     r = log_returns(close)
     t_pos = len(r) - 1
+    forced = []
+    if force_retrain:
+        params = train(r, t_pos)
+        db.save_params(session, params)
+        session.flush()
+        forced.append(params)
+        log.info("강제 재학습: 기준일 %s, HAR 학습 행 %d", params.trained_on, params.n_train_rows)
     existing = db.forecast_dates(session, r.index[-1].date())
     start = max(0, t_pos - backfill_days + 1)
     positions = [p for p in range(start, t_pos + 1) if p == t_pos or r.index[p].date() not in existing]
@@ -78,7 +90,7 @@ def forecast(session: Session, close: pd.Series, backfill_days: int) -> tuple[pd
     for fc in forecasts:
         db.save_forecast(session, fc)
     session.flush()
-    return r, forecasts, new_params
+    return r, forecasts, forced + new_params
 
 
 def grade(session: Session, dates: list[date], end: date) -> None:
@@ -120,6 +132,8 @@ def make_plans(
         return 0
     row = forecasts.iloc[-1]
     trading_days = sorted({d for d in calendar.trading_days_in_week(target) if d >= target} | {target})
+    rule, version = active_rule(session)
+    log.info("분할 규칙: %s", version or "기본 규칙")
 
     users = db.active_users(session)
     if not users:
@@ -131,6 +145,7 @@ def make_plans(
             forecast_date=prev,
             weekly_amount=int(user.weekly_amount),
             trading_days=trading_days,
+            rule=rule,
         )
         db.replace_plan(session, user.id, plan)
         notifier.plan_created(user.id, user.name, plan)
@@ -166,6 +181,7 @@ def run(
     source: PriceSource | None = None,
     calendar: TradingCalendar | None = None,
     notifier: Notifier | None = None,
+    force_retrain: bool = False,
 ) -> RunResult:
     settings = settings or Settings.from_env()
     source = source or build_source(settings)
@@ -184,9 +200,10 @@ def run(
                 f"{target} 은 거래일인데 가격 데이터가 없습니다 (휴장일이면 HOLIDAYS_FILE에 추가하세요)"
             )
 
-        r, forecasts, new_params = forecast(session, close, settings.backfill_days)
+        r, forecasts, new_params = forecast(session, close, settings.backfill_days, force_retrain)
         grade(session, [f.date for f in forecasts], target)
         bands(session, close, [f.date for f in forecasts], target)
+        ensure_active_policy(session, close)
         today = db.load_forecasts(session, target).iloc[-1]
         result = RunResult(
             target,
@@ -213,6 +230,7 @@ def run(
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="금 분할매수 도우미 일간 배치")
     parser.add_argument("--date", required=True, type=date.fromisoformat, help="기준일 YYYY-MM-DD (장 마감 후 실행)")
+    parser.add_argument("--retrain", action="store_true", help="63거래일 주기와 관계없이 이 날짜 기준으로 모델 재학습")
     return parser.parse_args(argv)
 
 
@@ -227,7 +245,7 @@ def main(argv: list[str] | None = None) -> int:
     except SystemExit as exc:
         return EXIT_USAGE if exc.code else EXIT_OK
     try:
-        run(args.date, settings)
+        run(args.date, settings, force_retrain=args.retrain)
     except DataMissingError as exc:
         log.error(str(exc))
         return EXIT_NO_DATA
