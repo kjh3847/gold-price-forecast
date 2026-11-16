@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import sample from "../../public/data/forecast.sample.json";
 import { DataUpdate } from "./DataUpdate";
 
@@ -14,8 +14,9 @@ it("automatically requests the exact range and refreshes the forecast after uplo
   const fetcher = vi.fn().mockResolvedValueOnce({ ok: true, json: async () => stale }).mockResolvedValueOnce({ ok: true, json: async () => ({ added_count: 5, retrained_dates: [], forecast: sample, data_status: { ...stale, needs_upload: false, missing_count: 0 } }) });
   vi.stubGlobal("fetch", fetcher);
   render(<DataUpdate onUpdated={updated} />);
-  expect(await screen.findByText("2026-09-25부터 2026-10-01까지")).toBeInTheDocument();
-  expect(screen.getByRole("dialog")).toHaveAttribute("open");
+  const dialog = await screen.findByRole("dialog");
+  expect(dialog).toHaveAttribute("open");
+  expect(within(dialog).getByText("2026-09-25부터 2026-10-01까지")).toBeInTheDocument();
   const file = new File(["date,close\n2026-09-25,4284.97"], "prices.csv", { type: "text/csv" });
   Object.defineProperty(file, "text", { value: async () => "date,close\n2026-09-25,4284.97" });
   fireEvent.change(screen.getByLabelText("금 가격 CSV 파일"), { target: { files: [file] } });
@@ -38,7 +39,7 @@ it("keeps the old forecast and dialog on rejected CSV", async () => {
   const updated = vi.fn();
   vi.stubGlobal("fetch", vi.fn().mockResolvedValueOnce({ ok: true, json: async () => stale }).mockResolvedValueOnce({ ok: false, json: async () => ({ detail: "거래일이 아직 부족합니다" }) }));
   render(<DataUpdate onUpdated={updated} />);
-  await screen.findByText("2026-09-25부터 2026-10-01까지");
+  await screen.findByRole("dialog");
   const file = new File(["bad"], "bad.csv");
   Object.defineProperty(file, "text", { value: async () => "bad" });
   fireEvent.change(screen.getByLabelText("금 가격 CSV 파일"), { target: { files: [file] } });
