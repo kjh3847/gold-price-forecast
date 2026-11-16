@@ -9,7 +9,6 @@ import { CollectionCard } from "./components/CollectionCard";
 import { DataUpdate } from "./components/DataUpdate";
 import { FutureVolatility } from "./components/FutureVolatility";
 import { SimulationCard } from "./components/SimulationCard";
-import { LongRangeCard } from "./components/LongRangeCard";
 import { loadForecast, type LoadedForecast } from "./data";
 
 type State = { status: "loading" } | { status: "error"; message: string } | ({ status: "ready" } & LoadedForecast);
@@ -47,7 +46,6 @@ export default function App() {
         <WeatherCard data={data} />
         <FutureVolatility data={data} />
         <BandCard data={data} />
-        <LongRangeCard data={data} />
         <PlanCalculator grade={data.grade} splitRule={data.split_rule} policy={data.policy} />
         <SimulationCard policy={data.policy} />
         <CollectionCard data={data} isSample={isSample} />
