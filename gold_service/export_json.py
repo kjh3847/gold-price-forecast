@@ -12,7 +12,7 @@ import json
 import logging
 import math
 import sys
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import pandas as pd
@@ -25,7 +25,6 @@ from gold_service.features import HORIZON
 from gold_service.grading import Grade
 from gold_service.planner import SPLIT_RULES
 from gold_service.trading_calendar import TradingCalendar
-from datetime import timedelta
 
 log = logging.getLogger("gold_service")
 
@@ -81,6 +80,40 @@ def policy_info(session: Session) -> tuple[dict, dict | None]:
         "training": row.metrics.get("training"),
         "previous_version": previous,
     }
+
+
+def long_range_projection(close: pd.Series, as_of: date, calendar: TradingCalendar) -> list[dict]:
+    """최근 5년의 기간별 종가 비율에서 1~6개월 뒤 가격 분위수를 추정한다."""
+    origin = pd.Timestamp(as_of)
+    window = close.loc[origin - pd.DateOffset(years=5):origin].dropna()
+    window = window[window > 0]
+    if window.empty or window.index[-1] != origin:
+        return []
+
+    prices = window.to_numpy()
+    projection = []
+    for months in range(1, 7):
+        offset = pd.DateOffset(months=months)
+        targets = window.index + offset
+        observed = targets <= origin
+        if observed.sum() < 252:
+            return []
+        # 과거에도 월 기념일 당일 또는 그다음 관측 거래일의 종가를 사용한다.
+        target_indices = window.index.searchsorted(targets[observed], side="left")
+        ratios = pd.Series(prices[target_indices] / prices[observed])
+        low, median, high = ratios.quantile([0.05, 0.50, 0.95]).to_numpy() * prices[-1]
+
+        target = (origin + offset).date()
+        while not calendar.is_trading_day(target):
+            target += timedelta(days=1)
+        projection.append({
+            "months": months,
+            "date": target.isoformat(),
+            "low": round(float(low), 2),
+            "median": round(float(median), 2),
+            "high": round(float(high), 2),
+        })
+    return projection
 
 
 def build_payload(session: Session, as_of: date | None = None) -> dict:
@@ -144,6 +177,7 @@ def build_payload(session: Session, as_of: date | None = None) -> dict:
             "high": _num(last["band_high"], 2),
         },
         "history": history,
+        "long_range": long_range_projection(close, as_of_date, calendar),
         "evaluation": evaluation,
         "split_rule": split_rule,
         "policy": policy,
