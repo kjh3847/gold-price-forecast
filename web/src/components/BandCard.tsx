@@ -13,9 +13,16 @@ export function BandCard({ data }: { data: Forecast }) {
 
   return (
     <section className="card" aria-labelledby="band-title">
-      <h2 id="band-title" className="card__title">
-        다음 {band.horizon_days}거래일 {coverage}% 가격 범위
-      </h2>
+      <div className="band__header">
+        <h2 id="band-title" className="card__title">
+          다음 {band.horizon_days}거래일 {coverage}% 가격 범위
+        </h2>
+        {stats.checked > 0 && (
+          <p className="band__hit-rate" title={`최근 ${stats.checked}거래일의 가격 범위 적중률`}>
+            적중률 <strong>{formatPct((stats.checked - stats.outside) / stats.checked, 0)}</strong>
+          </p>
+        )}
+      </div>
       <p className="band__headline">
         <span className="band__range">
           {formatNumber(band.low)} ~ {formatNumber(band.high)} {unit}

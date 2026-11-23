@@ -619,3 +619,24 @@ thead th {
   margin-top: 10px;
   font-variant-numeric: tabular-nums;
 }
+
+
+.band__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 12px;
+  margin-bottom: 14px;
+}
+
+.band__header .card__title {
+  margin-bottom: 0;
+}
+
+.band__hit-rate {
+  margin-left: auto;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
